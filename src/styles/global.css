@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+	--color-background: #121014;
+	--color-card: #1C1920;
+	--color-border: #2E2A34;
+	--color-text: #F2EEE9;
+	--color-text-muted: #A39DA8;
+	--color-accent: #FF5A36;
+	--color-accent-2: #FFC247;
+	--color-accent-foreground: #121014;
+
+	--radius-card: 12px;
+	--radius-button: 8px;
+}

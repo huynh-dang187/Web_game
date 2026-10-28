@@ -1,5 +1,7 @@
 # ArenaForge — Project Context
 
+> Trước khi làm việc, đọc `rule.md` và `todo.md` để nắm quy ước và tiến độ.
+
 ## What this is
 A static website that showcases and distributes ORIGINAL indie 2D 
 fighting games, filtered by platform (All / PC / Mobile). Each game 
