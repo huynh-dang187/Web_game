@@ -1,8 +1,8 @@
-# TODO — Scaffold ArenaForge
+# TODO — ArenaForge
 
 > Cập nhật file này sau mỗi bước. Chỉ đánh dấu `[x]` khi đã kiểm chứng thực tế.
-> Nhánh làm việc: `feat/scaffold`
-> Trạng thái: hoàn thành scaffold, chưa commit.
+> Nhánh hiện tại: `feat/mock-data`
+> Trạng thái: Phase 1 đã merge vào `main`; Phase 2 hoàn thành, chưa commit.
 
 ## 1. Khởi tạo dự án
 - [x] Tạo nhánh `feat/scaffold`
@@ -70,7 +70,46 @@ git check-ignore -v .env .env.example dist .astro
 - [x] Tạo `rule.md`
 - [x] Thêm dòng trỏ tới `rule.md` và `todo.md` ở đầu `agent.md`
 
+## 7. Git workflow
+- [x] Amend commit scaffold thành message rõ nghĩa
+- [x] Merge `feat/scaffold` vào `main`
+- [x] Tạo và chuyển sang nhánh `feat/mock-data`
+
+## 8. Phase 2 — Mock Data & Schema
+- [x] Tạo `src/types/game.ts` với `Platform`, `ControlMapping`, `SystemRequirements`, `Game`
+- [x] Tạo `src/data/games.json` với 6 game hư cấu
+- [x] Đủ 3 game PC và 3 game Mobile
+- [x] Có 2 game `isFeatured: true`
+- [x] Cover và screenshots dùng `placehold.co` đúng token `#1C1920` / `#FF5A36`
+- [x] Dùng `youtubeId` mẫu và `downloadUrl` mẫu
+- [x] Tạo `src/lib/games.ts` với `getAllVisibleGames`, `getFeaturedGames`, `getGameBySlug`
+- [x] Validate JSON: đủ field, đúng định dạng, không trùng id/slug
+- [x] `npm run build` pass
+- [x] `tsc --noEmit` pass, 0 lỗi TypeScript
+
+## Commands Phase 2
+```powershell
+git commit --amend -m "feat: scaffold Astro site with Tailwind and base layout"
+git checkout main
+git merge feat/scaffold
+git checkout -b feat/mock-data
+
+npm run build
+npx --yes -p typescript tsc --noEmit
+node C:\Users\Admin\AppData\Local\Temp\opencode\verify-games-data.mjs
+npx --yes tsx -e "import { getAllVisibleGames, getFeaturedGames, getGameBySlug } from './src/lib/games.ts'; console.log(JSON.stringify({ visible: getAllVisibleGames().map((g) => g.slug), featured: getFeaturedGames().map((g) => g.slug), found: getGameBySlug('neon-talon')?.title }, null, 2));"
+```
+
+## Kết quả Phase 2
+- Tổng game: `6`
+- PC: `3`, Mobile: `3`
+- Featured: `2` (`ashfall-duelists`, `neon-talon`)
+- Visible: `6`
+- JSON validation: `0` lỗi
+- TypeScript: `0` lỗi
+- Helper trả về đúng danh sách visible/featured và tìm được game theo slug
+
 ## Chưa làm
-- Chưa commit (chỉ commit khi được yêu cầu).
+- Chưa commit `feat/mock-data` (đúng yêu cầu của task).
 - Chưa tạo các trang nội dung `/games/[slug]`, `/how-to-download`, `/legal`.
-- Chưa có `docs/design/` hoặc ảnh thiết kế để đối chiếu.
+- Chưa có `AGENTS.md` và `docs/design/`; đang dùng `agent.md` làm context gốc.

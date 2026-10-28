@@ -1,0 +1,230 @@
+[
+	{
+		"id": "ashfall-duelists",
+		"title": "Ashfall Duelists",
+		"slug": "ashfall-duelists",
+		"platform": "PC",
+		"genres": ["Đối kháng 2D", "Arcade", "Chơi địa phương"],
+		"shortDescription": "Hai võ sĩ tro tàn tranh đấu trong đấu trường dung nham đã nguội.",
+		"description": "Ashfall Duelists đưa người chơi vào một thành phố rèn bị chôn vùi dưới tro núi lửa. Mỗi võ sĩ mang một phong cách chiến đấu riêng, kết hợp đòn tay, vũ khí rèn và kỹ năng tro tàn. Chế độ chơi địa phương hỗ trợ hai người trên cùng một bàn phím.",
+		"controls": [
+			{ "action": "Di chuyển", "key": "A / D" },
+			{ "action": "Nhảy", "key": "W" },
+			{ "action": "Đòn nhẹ", "key": "J" },
+			{ "action": "Đòn nặng", "key": "K" },
+			{ "action": "Thủ", "key": "L" },
+			{ "action": "Tuyệt kỹ", "key": "U" }
+		],
+		"systemRequirements": {
+			"os": "Windows 10/11 64-bit",
+			"processor": "Intel Core i3-8100 / AMD Ryzen 3 2200G",
+			"memory": "8 GB RAM",
+			"storage": "1.5 GB"
+		},
+		"version": "1.2.0",
+		"fileSize": "1.5 GB",
+		"updatedAt": "2026-09-18",
+		"coverImage": "https://placehold.co/800x450/1C1920/FF5A36.webp?text=Ashfall%20Duelists",
+		"screenshots": [
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Ashfall%20Duelists%20-%20Arena",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Ashfall%20Duelists%20-%20Combo",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Ashfall%20Duelists%20-%20Victory"
+		],
+		"youtubeId": "dQw4w9WgXcQ",
+		"downloadUrl": "https://example.com/shortlink-demo",
+		"isFeatured": true,
+		"isVisible": true,
+		"views": 18420,
+		"downloads": 3120
+	},
+	{
+		"id": "ironbloom-arena",
+		"title": "Ironbloom Arena",
+		"slug": "ironbloom-arena",
+		"platform": "PC",
+		"genres": ["Đối kháng 2D", "Arena", "Đối kháng 1v1"],
+		"shortDescription": "Những chiến binh làm vườn biến kim loại thành vũ khí trong đấu trường khép kín.",
+		"description": "Ironbloom Arena diễn ra trong một khu vườn cơ khí nơi hoa kim loại nở theo từng hiệp đấu. Người chơi chọn một chiến binh, thu thập mảnh ghép và tung ra chuỗi đòn ngắn nhưng dồn dập. Mỗi sân đấu có bố cục riêng và thay đổi theo thời gian trong trận.",
+		"controls": [
+			{ "action": "Di chuyển", "key": "Mũi tên trái / phải" },
+			{ "action": "Nhảy", "key": "Mũi tên lên" },
+			{ "action": "Đòn nhẹ", "key": "Z" },
+			{ "action": "Đòn nặng", "key": "X" },
+			{ "action": "Thủ", "key": "C" },
+			{ "action": "Tuyệt kỹ", "key": "V" }
+		],
+		"systemRequirements": {
+			"os": "Windows 10 64-bit",
+			"processor": "Intel Core i5-6400 / AMD Ryzen 3 1200",
+			"memory": "8 GB RAM",
+			"storage": "1.2 GB"
+		},
+		"version": "1.0.3",
+		"fileSize": "1.2 GB",
+		"updatedAt": "2026-08-22",
+		"coverImage": "https://placehold.co/800x450/1C1920/FF5A36.webp?text=Ironbloom%20Arena",
+		"screenshots": [
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Ironbloom%20Arena%20-%20Garden",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Ironbloom%20Arena%20-%20Clash",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Ironbloom%20Arena%20-%20Bloom"
+		],
+		"youtubeId": "dQw4w9WgXcQ",
+		"downloadUrl": "https://example.com/shortlink-demo",
+		"isFeatured": false,
+		"isVisible": true,
+		"views": 9320,
+		"downloads": 1450
+	},
+	{
+		"id": "frostlane-rivals",
+		"title": "Frostlane Rivals",
+		"slug": "frostlane-rivals",
+		"platform": "PC",
+		"genres": ["Đối kháng 2D", "Đối kháng 1v1", "Chiến thuật"],
+		"shortDescription": "Các đấu sĩ giữ tuyến thương mại băng giá bằng những đòn đánh có nhịp chậm.",
+		"description": "Frostlane Rivals lấy bối cảnh một tuyến đường thương mại đóng băng, nơi các gia tộc tranh giành quyền kiểm soát trạm tiếp tế. Trận đấu tập trung vào khoảng cách, thời điểm phản đòn và quản lý tài nguyên nhiệt. Mỗi nhân vật có một thanh nhiệt riêng thay đổi cách tung chiêu.",
+		"controls": [
+			{ "action": "Di chuyển", "key": "A / D" },
+			{ "action": "Nhảy", "key": "Space" },
+			{ "action": "Đòn nhẹ", "key": "J" },
+			{ "action": "Đòn nặng", "key": "K" },
+			{ "action": "Thủ", "key": "L" },
+			{ "action": "Tuyệt kỹ", "key": "I" }
+		],
+		"systemRequirements": {
+			"os": "Windows 10/11 64-bit",
+			"processor": "Intel Core i5-8400 / AMD Ryzen 5 2600",
+			"memory": "8 GB RAM",
+			"storage": "1.1 GB"
+		},
+		"version": "0.9.7",
+		"fileSize": "1.1 GB",
+		"updatedAt": "2026-10-02",
+		"coverImage": "https://placehold.co/800x450/1C1920/FF5A36.webp?text=Frostlane%20Rivals",
+		"screenshots": [
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Frostlane%20Rivals%20-%20Lane",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Frostlane%20Rivals%20-%20Counter",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Frostlane%20Rivals%20-%20Station"
+		],
+		"youtubeId": "dQw4w9WgXcQ",
+		"downloadUrl": "https://example.com/shortlink-demo",
+		"isFeatured": false,
+		"isVisible": true,
+		"views": 7640,
+		"downloads": 980
+	},
+	{
+		"id": "neon-talon",
+		"title": "Neon Talon",
+		"slug": "neon-talon",
+		"platform": "Mobile",
+		"genres": ["Đối kháng 2D", "Mobile", "PvP trực tuyến"],
+		"shortDescription": "Các võ sĩ móng vuốt ánh sáng chạm trán trên những mái nhà neon.",
+		"description": "Neon Talon là game đối kháng 2D dọc theo các mái nhà của một thành phố ban đêm. Điều khiển bằng một tay với cần ảo và các nút hành động lớn, trận đấu diễn ra nhanh với những pha đổi hướng liên tục. Người chơi có thể luyện tập với máy hoặc tham gia phòng đấu trực tuyến.",
+		"controls": [
+			{ "action": "Di chuyển", "key": "Cần điều khiển ảo" },
+			{ "action": "Nhảy", "key": "Vuốt lên" },
+			{ "action": "Đòn nhẹ", "key": "Chạm" },
+			{ "action": "Đòn nặng", "key": "Giữ" },
+			{ "action": "Thủ", "key": "Vuốt xuống" },
+			{ "action": "Tuyệt kỹ", "key": "Nút kỹ năng" }
+		],
+		"systemRequirements": {
+			"os": "Android 10+ / iOS 15+",
+			"processor": "Snapdragon 730G / Apple A13",
+			"memory": "4 GB RAM",
+			"storage": "310 MB"
+		},
+		"version": "2.1.0",
+		"fileSize": "310 MB",
+		"updatedAt": "2026-10-10",
+		"coverImage": "https://placehold.co/800x450/1C1920/FF5A36.webp?text=Neon%20Talon",
+		"screenshots": [
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Neon%20Talon%20-%20Rooftop",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Neon%20Talon%20-%20Rush",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Neon%20Talon%20-%20Night%20City"
+		],
+		"youtubeId": "dQw4w9WgXcQ",
+		"downloadUrl": "https://example.com/shortlink-demo",
+		"isFeatured": true,
+		"isVisible": true,
+		"views": 42800,
+		"downloads": 15200
+	},
+	{
+		"id": "cloudstep-brawlers",
+		"title": "Cloudstep Brawlers",
+		"slug": "cloudstep-brawlers",
+		"platform": "Mobile",
+		"genres": ["Đối kháng 2D", "Mobile", "Arcade"],
+		"shortDescription": "Những võ sĩ bước trên mây tranh tài tại một ngôi đền treo giữa trời.",
+		"description": "Cloudstep Brawlers đưa các trận đấu lên những nền mây có thể vỡ dần trong mỗi hiệp. Nhân vật di chuyển nhẹ, nhảy cao và có thể đổi hướng giữa không trung để né đòn. Chế độ arcade ngắn phù hợp cho những phiên chơi vài phút.",
+		"controls": [
+			{ "action": "Di chuyển", "key": "Cần điều khiển ảo" },
+			{ "action": "Nhảy", "key": "Nút nhảy" },
+			{ "action": "Đòn nhẹ", "key": "Chạm" },
+			{ "action": "Đòn nặng", "key": "Giữ" },
+			{ "action": "Thủ", "key": "Vuốt xuống" },
+			{ "action": "Tuyệt kỹ", "key": "Nút kỹ năng" }
+		],
+		"systemRequirements": {
+			"os": "Android 9+ / iOS 14+",
+			"processor": "Snapdragon 660 / Apple A12",
+			"memory": "3 GB RAM",
+			"storage": "260 MB"
+		},
+		"version": "1.4.2",
+		"fileSize": "260 MB",
+		"updatedAt": "2026-07-30",
+		"coverImage": "https://placehold.co/800x450/1C1920/FF5A36.webp?text=Cloudstep%20Brawlers",
+		"screenshots": [
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Cloudstep%20Brawlers%20-%20Temple",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Cloudstep%20Brawlers%20-%20Air%20Combo",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Cloudstep%20Brawlers%20-%20Sky%20Arena"
+		],
+		"youtubeId": "dQw4w9WgXcQ",
+		"downloadUrl": "https://example.com/shortlink-demo",
+		"isFeatured": false,
+		"isVisible": true,
+		"views": 20100,
+		"downloads": 5430
+	},
+	{
+		"id": "jade-comet-clash",
+		"title": "Jade Comet Clash",
+		"slug": "jade-comet-clash",
+		"platform": "Mobile",
+		"genres": ["Đối kháng 2D", "Mobile", "Đối kháng 1v1"],
+		"shortDescription": "Các đấu sĩ triệu hồi sao chổi ngọc để tung ra những đòn kết liễu.",
+		"description": "Jade Comet Clash diễn ra trong một thung lũng nơi các mảnh sao chổi ngọc rơi xuống mỗi đêm. Người chơi tích năng lượng qua các đòn đánh để triệu hồi một đòn kết liễu có hướng bay khác nhau. Mỗi nhân vật có ba biến thể tuyệt kỹ tùy theo thế đứng.",
+		"controls": [
+			{ "action": "Di chuyển", "key": "Cần điều khiển ảo" },
+			{ "action": "Nhảy", "key": "Vuốt lên" },
+			{ "action": "Đòn nhẹ", "key": "Chạm" },
+			{ "action": "Đòn nặng", "key": "Giữ" },
+			{ "action": "Thủ", "key": "Vuốt xuống" },
+			{ "action": "Tuyệt kỹ", "key": "Nút kỹ năng" }
+		],
+		"systemRequirements": {
+			"os": "Android 10+ / iOS 15+",
+			"processor": "Snapdragon 695 / Apple A13",
+			"memory": "4 GB RAM",
+			"storage": "295 MB"
+		},
+		"version": "1.1.5",
+		"fileSize": "295 MB",
+		"updatedAt": "2026-09-05",
+		"coverImage": "https://placehold.co/800x450/1C1920/FF5A36.webp?text=Jade%20Comet%20Clash",
+		"screenshots": [
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Jade%20Comet%20Clash%20-%20Valley",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Jade%20Comet%20Clash%20-%20Comet%20Strike",
+			"https://placehold.co/800x450/1C1920/FF5A36.webp?text=Jade%20Comet%20Clash%20-%20Night%20Sky"
+		],
+		"youtubeId": "dQw4w9WgXcQ",
+		"downloadUrl": "https://example.com/shortlink-demo",
+		"isFeatured": false,
+		"isVisible": true,
+		"views": 15600,
+		"downloads": 3720
+	}
+]

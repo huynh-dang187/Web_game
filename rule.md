@@ -10,8 +10,9 @@
 > 5. Prompt của task hiện tại
 
 ## Trạng thái hiện tại
-- Nhánh: `feat/scaffold`
-- Đã scaffold xong Astro + Tailwind, chưa commit.
+- Nhánh: `feat/mock-data`
+- Phase 1 đã commit và merge vào `main`.
+- Phase 2 đã có types, mock data và helper, chưa commit.
 - Chưa build trang nội dung. `src/pages/index.astro` chỉ là shell rỗng để render layout.
 
 ## Stack
@@ -27,12 +28,18 @@ src/
 ├── components/
 │   ├── Footer.astro
 │   └── Navbar.astro
+├── data/
+│   └── games.json
 ├── layouts/
 │   └── MainLayout.astro
+├── lib/
+│   └── games.ts
 ├── pages/
 │   └── index.astro
-└── styles/
-    └── global.css
+├── styles/
+│   └── global.css
+└── types/
+    └── game.ts
 ```
 
 ## Design token
@@ -48,6 +55,15 @@ src/
 --radius-card: 12px;
 --radius-button: 8px;
 ```
+
+## Mock data
+- `src/types/game.ts`: `Platform`, `ControlMapping`, `SystemRequirements`, `Game`.
+- `src/data/games.json`: 6 game hư cấu (3 PC, 3 Mobile, 2 featured).
+- `src/lib/games.ts`: `getAllVisibleGames()`, `getFeaturedGames()`, `getGameBySlug(slug)`.
+- Ảnh mock dùng `https://placehold.co/800x450/1C1920/FF5A36.webp?text=...`.
+- Download URL mock: `https://example.com/shortlink-demo`.
+- `getAllVisibleGames()` và `getFeaturedGames()` chỉ trả game `isVisible`.
+- `getGameBySlug()` chỉ trả game visible.
 
 ## Quy ước bắt buộc
 - Mobile-first, tối ưu cho 4G, hạn chế JavaScript phía client.
@@ -65,6 +81,7 @@ src/
 ## Kiểm chứng
 ```powershell
 npm run build
+npx --yes -p typescript tsc --noEmit
 npm run dev -- --host 127.0.0.1 --port 4321
 ```
 
@@ -88,4 +105,5 @@ git check-ignore -v .env .env.example dist .astro
 `.env`, `dist`, `.astro` phải bị ignore; `.env.example` phải được track.
 
 ## Lịch sử
-- 2026-10-28: Hoàn thành scaffold trên nhánh `feat/scaffold`.
+- 2026-10-28: Hoàn thành scaffold trên nhánh `feat/scaffold`, merge vào `main`.
+- 2026-10-28: Hoàn thành Phase 2 (types, mock data, helpers) trên `feat/mock-data`.
