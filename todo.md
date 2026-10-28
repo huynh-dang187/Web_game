@@ -1,8 +1,8 @@
 # TODO — ArenaForge
 
 > Cập nhật file này sau mỗi bước. Chỉ đánh dấu `[x]` khi đã kiểm chứng thực tế.
-> Nhánh hiện tại: `feat/mock-data`
-> Trạng thái: Phase 1 đã merge vào `main`; Phase 2 hoàn thành, chưa commit.
+> Nhánh hiện tại: `feat/home-page`
+> Trạng thái: Phase 2 đã merge vào `main`; Phase 3 hoàn thành, chưa commit.
 
 ## 1. Khởi tạo dự án
 - [x] Tạo nhánh `feat/scaffold`
@@ -109,7 +109,62 @@ npx --yes tsx -e "import { getAllVisibleGames, getFeaturedGames, getGameBySlug }
 - TypeScript: `0` lỗi
 - Helper trả về đúng danh sách visible/featured và tìm được game theo slug
 
+## 9. Phase 3 — Home Page & Filtering
+- [x] Commit toàn bộ Phase 2 trên `feat/mock-data`
+- [x] Merge `feat/mock-data` vào `main`
+- [x] Tạo và chuyển sang nhánh `feat/home-page`
+- [x] Tạo `src/components/GameCard.astro` với prop `game: Game`
+- [x] Card dùng `bg-card`, `border-border`, `rounded-card`, không shadow/gradient
+- [x] Card có cover 16:9, platform badge `accent-2`, genre tags, title, shortDescription
+- [x] Card có link tới `/games/${game.slug}`
+- [x] Card có `data-platform` và `data-title`
+- [x] `index.astro` dùng `getAllVisibleGames()` và `getFeaturedGames()`
+- [x] Hero/featured banner có cover, title, shortDescription, platform badge, CTA `accent`
+- [x] Filter tabs All / PC / Mobile, active dùng `accent` + `accent-foreground`
+- [x] Grid 1 cột mobile, 2 cột tablet, 3 cột desktop
+- [x] Empty state khi không có game khớp
+- [x] Search input trong Navbar lọc theo tên game
+- [x] Filter tabs và search kết hợp được, không reload trang
+- [x] `npm run build` pass
+- [x] `tsc --noEmit` pass, 0 lỗi TypeScript
+- [x] Kiểm tra 375px: hero, 6 card, 1 cột, tabs và search hoạt động
+- [x] Kiểm tra 768px: 2 cột
+- [x] Kiểm tra 1280px: 3 cột
+- [x] Kiểm tra empty state khi search không có kết quả
+
+## Commands Phase 3
+```powershell
+git add -A
+git commit -m "feat: add typed mock game data and helpers"
+git checkout main
+git merge feat/mock-data
+git checkout -b feat/home-page
+
+npm run build
+npx --yes -p typescript tsc --noEmit
+node C:\Users\Admin\AppData\Local\Temp\opencode\verify-home.mjs
+node C:\Users\Admin\AppData\Local\Temp\opencode\verify-tablet.mjs
+```
+
+## Kết quả Phase 3
+- Cards: `6`, hiển thị đủ 3 PC + 3 Mobile
+- Grid: `1` cột ở 375px, `2` cột ở 768px, `3` cột ở 1280px
+- Filter PC: `3` card; Mobile: `3` card; All: `6` card
+- Active tab: nền `rgb(255, 90, 54)`, chữ `rgb(18, 16, 20)`
+- Search `neon`: còn `1` card (`Neon Talon`)
+- Search `iron` trên desktop: còn `1` card (`Ironbloom Arena`)
+- Search `zzz`: `0` card, empty state hiển thị
+- Hero: `Ashfall Duelists`, badge `PC`, CTA `/games/ashfall-duelists`
+- Screenshots:
+  - `arenaforge-home-375.png`
+  - `arenaforge-home-375-full.png`
+  - `arenaforge-home-375-search.png`
+  - `arenaforge-home-375-empty.png`
+  - `arenaforge-home-tablet.png`
+  - `arenaforge-home-desktop.png`
+  - `arenaforge-home-desktop-full.png`
+
 ## Chưa làm
-- Chưa commit `feat/mock-data` (đúng yêu cầu của task).
+- Chưa commit `feat/home-page` (đúng yêu cầu của task).
 - Chưa tạo các trang nội dung `/games/[slug]`, `/how-to-download`, `/legal`.
 - Chưa có `AGENTS.md` và `docs/design/`; đang dùng `agent.md` làm context gốc.
