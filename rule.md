@@ -10,10 +10,10 @@
 > 5. Prompt của task hiện tại
 
 ## Trạng thái hiện tại
-- Nhánh: `feat/mock-data`
-- Phase 1 đã commit và merge vào `main`.
-- Phase 2 đã có types, mock data và helper, chưa commit.
-- Chưa build trang nội dung. `src/pages/index.astro` chỉ là shell rỗng để render layout.
+- Nhánh: `feat/home-page`
+- Phase 1 và Phase 2 đã commit, merge vào `main`.
+- Phase 3 đã có trang chủ, `GameCard`, filter tabs và search, chưa commit.
+- Đã build trang chủ; chưa build `/games/[slug]`, `/how-to-download`, `/legal`.
 
 ## Stack
 - Astro `7.4.2`, static output
@@ -27,6 +27,7 @@
 src/
 ├── components/
 │   ├── Footer.astro
+│   ├── GameCard.astro
 │   └── Navbar.astro
 ├── data/
 │   └── games.json
@@ -65,6 +66,15 @@ src/
 - `getAllVisibleGames()` và `getFeaturedGames()` chỉ trả game `isVisible`.
 - `getGameBySlug()` chỉ trả game visible.
 
+## Home page
+- Hero lấy `getFeaturedGames()[0]`, fallback `getAllVisibleGames()[0]`.
+- Filter tabs dùng `data-filter` với giá trị `all`, `PC`, `Mobile`.
+- Search dùng `#site-search` trong Navbar, lọc theo `data-title`.
+- Card dùng `data-platform` và `data-title` để lọc client-side.
+- Grid: `1` cột mobile, `2` cột từ `md`, `3` cột từ `lg`.
+- Empty state dùng `#empty-state`, hiển thị khi không còn card nào khớp.
+- Link chi tiết tạm trỏ `/games/${slug}`; trang chi tiết chưa được build.
+
 ## Quy ước bắt buộc
 - Mobile-first, tối ưu cho 4G, hạn chế JavaScript phía client.
 - Chỉ dùng màu phẳng. Không gradient, glow, blur, shadow.
@@ -88,9 +98,13 @@ npm run dev -- --host 127.0.0.1 --port 4321
 Mở `http://127.0.0.1:4321`, dùng DevTools → Toggle device toolbar → `375 × 812`.
 
 Kỳ vọng:
-- Navbar: logo "ArenaForge", hamburger bên phải.
-- Bấm hamburger: hiện search input + icon YouTube/TikTok.
-- Main trống.
+- Navbar: logo "ArenaForge", search, icon YouTube/TikTok, hamburger trên mobile.
+- Hero featured: `Ashfall Duelists`, badge `PC`, CTA tới `/games/ashfall-duelists`.
+- Filter tabs: All / PC / Mobile; tab active nền `#FF5A36`, chữ `#121014`.
+- Grid: 1 cột ở 375px, 2 cột ở 768px, 3 cột ở 1280px.
+- Có đủ 6 card, mỗi card có cover 16:9, platform badge, genre tags, title, mô tả ngắn.
+- Search theo tên game và filter platform kết hợp được, không reload.
+- Search không khớp: hiện "Không tìm thấy game phù hợp."
 - Footer có 4 link và dòng "All games are original creations".
 - Nền `#121014`, chữ `#F2EEE9`.
 
@@ -106,4 +120,5 @@ git check-ignore -v .env .env.example dist .astro
 
 ## Lịch sử
 - 2026-10-28: Hoàn thành scaffold trên nhánh `feat/scaffold`, merge vào `main`.
-- 2026-10-28: Hoàn thành Phase 2 (types, mock data, helpers) trên `feat/mock-data`.
+- 2026-10-28: Hoàn thành Phase 2 (types, mock data, helpers) trên `feat/mock-data`, merge vào `main`.
+- 2026-10-28: Hoàn thành Phase 3 (home page, GameCard, filter/search) trên `feat/home-page`.

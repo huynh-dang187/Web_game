@@ -2,12 +2,176 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import GameCard from '../components/GameCard.astro';
+import { getAllVisibleGames, getFeaturedGames } from '../lib/games';
+
+const games = getAllVisibleGames();
+const featured = getFeaturedGames()[0] ?? games[0];
 ---
 
 <MainLayout
-	title="ArenaForge"
+	title="ArenaForge — Game đối kháng 2D nguyên bản"
 	description="Khám phá và tải những tựa game đối kháng 2D indie nguyên bản."
 >
 	<Navbar slot="navbar" />
+
+	<section class="mx-auto w-full max-w-6xl px-4 py-8 md:py-12">
+		{
+			featured && (
+				<div class="overflow-hidden rounded-card border border-border bg-card lg:grid lg:grid-cols-2">
+					<a
+						href={`/games/${featured.slug}`}
+						class="block aspect-video border-b border-border lg:border-r lg:border-b-0"
+					>
+						<img
+							src={featured.coverImage}
+							alt={`Ảnh bìa ${featured.title}`}
+							width="800"
+							height="450"
+							loading="eager"
+							class="h-full w-full object-cover"
+						/>
+					</a>
+
+					<div class="flex flex-col justify-center gap-4 p-5 md:p-8">
+						<div class="flex flex-wrap items-center gap-2">
+							<span class="rounded-button bg-accent-2 px-2 py-1 text-xs font-semibold text-accent-foreground">
+								{featured.platform}
+							</span>
+							<span class="text-xs font-semibold tracking-wide text-accent-2 uppercase">
+								Featured
+							</span>
+						</div>
+
+						<h1 class="text-3xl leading-tight font-bold text-text md:text-4xl">
+							{featured.title}
+						</h1>
+
+						<p class="text-base text-text-muted">{featured.shortDescription}</p>
+
+						<div>
+							<a
+								href={`/games/${featured.slug}`}
+								class="inline-flex rounded-button bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+							>
+								Xem chi tiết
+							</a>
+						</div>
+					</div>
+				</div>
+			)
+		}
+	</section>
+
+	<section class="mx-auto w-full max-w-6xl px-4 pb-12" aria-labelledby="games-heading">
+		<div class="mb-5 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+			<div>
+				<h2 id="games-heading" class="text-2xl font-bold text-text">Danh sách game</h2>
+				<p class="mt-1 text-sm text-text-muted">Lọc theo nền tảng hoặc tìm theo tên game.</p>
+			</div>
+
+			<div class="flex flex-wrap gap-2" role="group" aria-label="Lọc theo nền tảng">
+				<button
+					type="button"
+					data-filter="all"
+					data-active="true"
+					aria-pressed="true"
+					class="rounded-button border border-border bg-card px-4 py-2 text-sm font-semibold text-text-muted transition-colors hover:text-text data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-accent-foreground"
+				>
+					All
+				</button>
+				<button
+					type="button"
+					data-filter="PC"
+					data-active="false"
+					aria-pressed="false"
+					class="rounded-button border border-border bg-card px-4 py-2 text-sm font-semibold text-text-muted transition-colors hover:text-text data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-accent-foreground"
+				>
+					PC
+				</button>
+				<button
+					type="button"
+					data-filter="Mobile"
+					data-active="false"
+					aria-pressed="false"
+					class="rounded-button border border-border bg-card px-4 py-2 text-sm font-semibold text-text-muted transition-colors hover:text-text data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-accent-foreground"
+				>
+					Mobile
+				</button>
+			</div>
+		</div>
+
+		<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+			{ games.map((game) => <GameCard game={game} />) }
+		</div>
+
+		<p
+			id="empty-state"
+			hidden
+			role="status"
+			aria-live="polite"
+			class="mt-4 rounded-card border border-border bg-card px-4 py-8 text-center text-sm text-text-muted"
+		>
+			Không tìm thấy game phù hợp.
+		</p>
+	</section>
+
 	<Footer slot="footer" />
+
+	<script>
+		const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-game-card]'));
+		const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter]'));
+		const searchInput = document.querySelector<HTMLInputElement>('#site-search');
+		const searchForm = searchInput?.closest('form');
+		const emptyState = document.querySelector<HTMLElement>('#empty-state');
+
+		let activePlatform = 'all';
+		let searchTerm = '';
+
+		function applyFilters() {
+			let visibleCount = 0;
+
+			for (const card of cards) {
+				const matchesPlatform =
+					activePlatform === 'all' || card.dataset.platform === activePlatform;
+				const matchesSearch = (card.dataset.title ?? '').includes(searchTerm);
+				const isVisible = matchesPlatform && matchesSearch;
+
+				card.hidden = !isVisible;
+
+				if (isVisible) {
+					visibleCount += 1;
+				}
+			}
+
+			if (emptyState) {
+				emptyState.hidden = visibleCount > 0;
+			}
+		}
+
+		for (const tab of tabs) {
+			tab.addEventListener('click', () => {
+				activePlatform = tab.dataset.filter ?? 'all';
+
+				for (const other of tabs) {
+					const isActive = other === tab;
+					other.dataset.active = String(isActive);
+					other.setAttribute('aria-pressed', String(isActive));
+				}
+
+				applyFilters();
+			});
+		}
+
+		searchInput?.addEventListener('input', () => {
+			searchTerm = searchInput.value.trim().toLowerCase();
+			applyFilters();
+		});
+
+		searchForm?.addEventListener('submit', (event) => {
+			event.preventDefault();
+		});
+
+		applyFilters();
+	</script>
 </MainLayout>
