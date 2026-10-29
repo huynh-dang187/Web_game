@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { SITE_INDEXABLE } from '../data/site';
 
 interface Props {
 	title: string;
@@ -9,6 +10,7 @@ interface Props {
 
 const { title, description, coverImage } = Astro.props;
 const siteName = 'ArenaForge';
+const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
 ---
 
 <!doctype html>
@@ -20,6 +22,10 @@ const siteName = 'ArenaForge';
 		<meta name="theme-color" content="#121014" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<meta
+			name="robots"
+			content={SITE_INDEXABLE ? 'index, follow' : 'noindex, nofollow'}
+		/>
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content={siteName} />
 		<meta property="og:locale" content="vi_VN" />
@@ -39,5 +45,15 @@ const siteName = 'ArenaForge';
 			<slot />
 		</main>
 		<slot name="footer" />
+
+		{
+			cfAnalyticsToken && (
+				<script
+					defer
+					src="https://static.cloudflareinsights.com/beacon.min.js"
+					data-cf-beacon={`{"token": "${cfAnalyticsToken}"}`}
+				/>
+			)
+		}
 	</body>
 </html>

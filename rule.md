@@ -10,10 +10,11 @@
 > 5. Prompt của task hiện tại
 
 ## Trạng thái hiện tại
-- Nhánh: `main`
-- Tất cả các Phase (1 đến 6) đã hoàn thành và merge hoàn toàn vào `main`.
-- Đã sẵn sàng 100% để deploy lên Cloudflare Pages (`https://arenaforge.pages.dev`).
-- Đã cấu hình sitemap động (`@astrojs/sitemap`), `robots.txt`, 9 trang tĩnh và kiểm thử toàn diện.
+- Nhánh: `fix/pre-launch`
+- Tất cả các Phase (1 đến 6) đã merge vào `main`.
+- Giai đoạn Pre-launch đã hoàn thành trên nhánh `fix/pre-launch`, chưa commit.
+- Đã sẵn sàng 100% để deploy lên Cloudflare Pages (`https://web-game-3s8.pages.dev`).
+- Đã cấu hình sitemap động (`@astrojs/sitemap`), `robots.txt` chặn index trước phát hành chính thức, 9 trang tĩnh và kiểm thử toàn diện.
 
 ## Stack
 - Astro `7.4.2`, static output
@@ -36,7 +37,8 @@ src/
 │   ├── Navbar.astro
 │   └── YoutubeLite.astro
 ├── data/
-│   └── games.json
+│   ├── games.json
+│   └── site.ts
 ├── layouts/
 │   └── MainLayout.astro
 ├── lib/
@@ -70,9 +72,11 @@ tsconfig.json
 --radius-button: 8px;
 ```
 
-## SEO & Sitemap
-- `site: 'https://arenaforge.pages.dev'` được định nghĩa trong `astro.config.mjs`.
-- File `public/robots.txt` cho phép toàn bộ crawler và trỏ đến `https://arenaforge.pages.dev/sitemap-index.xml`.
+## SEO, Sitemap & Analytics
+- `site: 'https://web-game-3s8.pages.dev'` được định nghĩa trong `astro.config.mjs`.
+- File `public/robots.txt` chứa `Disallow: /` khi đang ở giai đoạn tiền phát hành và trỏ đến `https://web-game-3s8.pages.dev/sitemap-index.xml`.
+- Hằng số `SITE_INDEXABLE = false` tại `src/data/site.ts` điều khiển thẻ `<meta name="robots" content="noindex, nofollow">` trên toàn trang qua `MainLayout.astro`.
+- Cloudflare Web Analytics được hỗ trợ qua biến môi trường `PUBLIC_CF_ANALYTICS_TOKEN` (chỉ chèn script khi biến này tồn tại).
 - Tự động sinh `dist/sitemap-index.xml` và `dist/sitemap-0.xml` khi build, bao gồm toàn bộ 9 route.
 
 ## Mock data
@@ -88,6 +92,7 @@ tsconfig.json
   - `Contact`: `/legal#contact`
   - `How to Download`: `/how-to-download`
   - `Privacy`: `/legal#privacy`
+- Navbar: liên kết mạng xã hội đọc từ `src/data/site.ts`, tự động ẩn icon nếu URL để trống.
 - Không có bất kỳ liên kết chết (broken link / 404) nào trên toàn bộ trang web.
 
 ## Quy ước bắt buộc
@@ -115,3 +120,4 @@ npx --yes -p typescript tsc --noEmit
 - 2026-10-29: Hoàn thành Phase 4 (Game Detail Page, YoutubeLite, SEO og:image) trên nhánh `feat/game-detail`, merge vào `main`.
 - 2026-10-29: Hoàn thành Phase 5 (Static Pages: How to Download, Legal, Footer polish) trên nhánh `feat/static-pages`, merge vào `main`.
 - 2026-10-29: Hoàn thành Phase 6 (Sitemap, robots.txt, production readiness), merge vào `main`.
+- 2026-10-29: Hoàn thành Pre-launch (`fix/pre-launch`: domain mới, noindex toggle, CF analytics, empty social hide), merge vào `main`.
