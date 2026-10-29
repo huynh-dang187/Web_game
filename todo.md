@@ -1,8 +1,8 @@
 # TODO — ArenaForge
 
 > Cập nhật file này sau mỗi bước. Chỉ đánh dấu `[x]` khi đã kiểm chứng thực tế.
-> Nhánh hiện tại: `main` (sau khi merge `feat/seo-deploy`)
-> Trạng thái: Toàn bộ Phase 1 đến Phase 6 đã hoàn thành và merge vào `main`, sẵn sàng 100% để deploy Cloudflare Pages.
+> Nhánh hiện tại: `fix/pre-launch`
+> Trạng thái: Hoàn tất cấu hình pre-launch trên `fix/pre-launch`, chưa commit.
 > Cập nhật cuối: 2026-10-29
 
 ## 1. Khởi tạo dự án
@@ -270,39 +270,60 @@ git merge feat/static-pages
 ## 12. Phase 6 — SEO Sitemap & Production Readiness
 - [x] Tạo nhánh `feat/seo-deploy` từ `main`
 - [x] Cài đặt `@astrojs/sitemap` (`^3.7.4`)
-- [x] Cấu hình `astro.config.mjs` với `site: 'https://arenaforge.pages.dev'` và `integrations: [sitemap()]`
-- [x] Tạo `public/robots.txt` cho phép toàn bộ crawler và trỏ tới `https://arenaforge.pages.dev/sitemap-index.xml`
-- [x] `npm run build` pass, sinh ra:
-  - 9 trang tĩnh HTML (`/index.html`, `/how-to-download/index.html`, `/legal/index.html`, 6 trang game)
-  - `dist/robots.txt`
-  - `dist/sitemap-index.xml`
-  - `dist/sitemap-0.xml` (chứa toàn bộ 9 route với domain `https://arenaforge.pages.dev`)
-- [x] `tsc --noEmit` pass, 0 lỗi TypeScript
-- [x] Commit toàn bộ trên `feat/seo-deploy`
-- [x] Merge `feat/seo-deploy` vào `main` (sẵn sàng 100% để push lên GitHub và deploy Cloudflare Pages)
+- [x] Cấu hình `astro.config.mjs` với integration `sitemap()`
+- [x] Commit `8da2370` trên `feat/seo-deploy` và merge vào `main`
 
-## Commands Phase 6
+## 13. Pre-launch Configuration (`fix/pre-launch`)
+- [x] Tạo nhánh `fix/pre-launch` từ `main`
+- [x] Cập nhật `astro.config.mjs` với domain chính thức: `site: 'https://web-game-3s8.pages.dev'`
+- [x] Cập nhật `public/robots.txt` với `Sitemap: https://web-game-3s8.pages.dev/sitemap-index.xml` và `Disallow: /` khi đang ở giai đoạn tiền phát hành
+- [x] Tạo `src/data/site.ts` khai báo cấu hình site, mạng xã hội (mặc định rỗng) và hằng số `SITE_INDEXABLE = false`
+- [x] Cập nhật `src/layouts/MainLayout.astro` render `<meta name="robots" content="noindex, nofollow">` khi `SITE_INDEXABLE = false`
+- [x] Thêm hỗ trợ Cloudflare Web Analytics qua biến môi trường `PUBLIC_CF_ANALYTICS_TOKEN` (chỉ render snippet khi có token)
+- [x] Thêm `PUBLIC_CF_ANALYTICS_TOKEN=` vào `.env.example`
+- [x] Cập nhật `src/components/Navbar.astro` đọc liên kết mạng xã hội từ `src/data/site.ts` và tự động ẩn icon khi URL để trống
+- [x] `npm run build` pass, sinh ra đủ 9 trang tĩnh kèm `dist/sitemap-0.xml` với toàn bộ URL chuẩn `https://web-game-3s8.pages.dev/`
+- [x] `tsc --noEmit` pass, 0 lỗi TypeScript
+- [x] Thêm danh sách kiểm tra các placeholder cần thay thế trước khi phát hành công khai vào cuối `todo.md`
+- [ ] Chưa commit `fix/pre-launch` (đang ở working tree theo quy tắc an toàn)
+
+### Working tree chưa commit
+- `.env.example`
+- `astro.config.mjs`
+- `public/robots.txt`
+- `rule.md`
+- `src/components/Navbar.astro`
+- `src/layouts/MainLayout.astro`
+- `src/data/site.ts`
+- `todo.md`
+
+## Commands Pre-launch
 ```powershell
 git checkout main
-git merge feat/static-pages
-git checkout -b feat/seo-deploy
+git checkout -b fix/pre-launch
 
-npm install @astrojs/sitemap
 npm run build
 npx --yes -p typescript tsc --noEmit
 git add -A
-git commit -m "feat: configure sitemap, robots.txt, and production SEO"
+git commit -m "fix: pre-launch config with robots noindex, cf analytics, and empty social links"
 git checkout main
-git merge feat/seo-deploy
+git merge fix/pre-launch
 ```
 
-## Kết quả Phase 6
-- Sitemap: sinh ra `sitemap-index.xml` và `sitemap-0.xml` với 9 URL chuẩn domain `https://arenaforge.pages.dev`
-- Robots.txt: cho phép crawler và trỏ đến sitemap
-- Thời gian build: ~`1.05s`
+## Kết quả Pre-launch
+- Domain chuẩn: `https://web-game-3s8.pages.dev`
+- Sitemap: sinh ra `sitemap-index.xml` và `sitemap-0.xml` với toàn bộ 9 URL sử dụng domain `https://web-game-3s8.pages.dev/`
+- Robots.txt: `Disallow: /` và Sitemap line trỏ `https://web-game-3s8.pages.dev/sitemap-index.xml`
+- Noindex meta tag: `<meta name="robots" content="noindex, nofollow">` hiển thị trên toàn bộ các trang tĩnh
+- Cloudflare Web Analytics: render đúng snippet khi có biến `PUBLIC_CF_ANALYTICS_TOKEN`, không hiển thị khi không có biến
+- Social icons: tự động ẩn trên Navbar khi URL trong `src/data/site.ts` để trống
+- Thời gian build: ~`1.55s`
 - TypeScript: `0` lỗi
-- Trạng thái repo: Nhánh `main` sạch, chứa toàn bộ MVP hoàn chỉnh sẵn sàng phát hành.
 
-## Trạng thái bàn giao MVP
-- Toàn bộ 6 giai đoạn (Scaffold, Mock Data, Home Page, Game Detail, Static Pages, SEO/Deployment) đã hoàn tất 100%.
-- Không có lỗi build, không có lỗi TypeScript, không có liên kết hỏng.
+## Placeholders to replace before public launch
+- [ ] `placehold.co` images
+- [ ] `youtubeId` `dQw4w9WgXcQ` (copyrighted music video)
+- [ ] `example.com` download URLs
+- [ ] `contact@arenaforge.example`
+- [ ] generic YouTube/TikTok links in the Navbar
+- [ ] fictional game descriptions

@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://arenaforge.pages.dev',
+	site: 'https://web-game-3s8.pages.dev',
 	output: 'static',
 	integrations: [sitemap()],
 	vite: {
