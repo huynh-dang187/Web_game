@@ -2,7 +2,8 @@
 
 > Cập nhật file này sau mỗi bước. Chỉ đánh dấu `[x]` khi đã kiểm chứng thực tế.
 > Nhánh hiện tại: `feat/home-page`
-> Trạng thái: Phase 2 đã merge vào `main`; Phase 3 hoàn thành, chưa commit.
+> Trạng thái: tạm dừng sau Phase 3; Phase 3 hoàn thành, chưa commit.
+> Cập nhật cuối: 2026-10-28
 
 ## 1. Khởi tạo dự án
 - [x] Tạo nhánh `feat/scaffold`
@@ -168,3 +169,24 @@ node C:\Users\Admin\AppData\Local\Temp\opencode\verify-tablet.mjs
 - Chưa commit `feat/home-page` (đúng yêu cầu của task).
 - Chưa tạo các trang nội dung `/games/[slug]`, `/how-to-download`, `/legal`.
 - Chưa có `AGENTS.md` và `docs/design/`; đang dùng `agent.md` làm context gốc.
+
+## 10. Tạm dừng — 2026-10-28
+- [x] Dừng phiên làm việc tại Phase 3
+- [x] Build và TypeScript check đã pass
+- [x] Ghi lại trạng thái vào `todo.md`
+
+### Working tree chưa commit
+- `src/components/GameCard.astro` (file mới)
+- `src/pages/index.astro`
+- `todo.md`
+- `rule.md`
+
+### Việc tiếp theo khi mở lại phiên
+- [ ] Review lại Phase 3 và commit `feat/home-page`
+- [ ] Merge `feat/home-page` vào `main`
+- [ ] Tạo `src/pages/games/[slug].astro`
+- [ ] Thêm nút Download + ghi chú "Opens a short ad page first"
+- [ ] Lazy embed YouTube demo
+- [ ] Tạo trang `/how-to-download`
+- [ ] Tạo trang `/legal`
+- [ ] Test lại 375px, 768px, 1280px trước khi merge
