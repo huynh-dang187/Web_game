@@ -1,0 +1,226 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import GameCard from '../../components/GameCard.astro';
+import YoutubeLite from '../../components/YoutubeLite.astro';
+import { getAllVisibleGames } from '../../lib/games';
+import type { Game } from '../../types/game';
+
+export async function getStaticPaths() {
+	const games = getAllVisibleGames();
+	return games.map((game) => ({
+		params: { slug: game.slug },
+		props: { game },
+	}));
+}
+
+interface Props {
+	game: Game;
+}
+
+const { game } = Astro.props;
+
+const allGames = getAllVisibleGames();
+const otherGames = allGames.filter((g) => g.slug !== game.slug);
+const samePlatformGames = otherGames.filter((g) => g.platform === game.platform);
+const differentPlatformGames = otherGames.filter((g) => g.platform !== game.platform);
+const relatedGames = [...samePlatformGames, ...differentPlatformGames].slice(0, 3);
+---
+
+<MainLayout
+	title={`${game.title} — ArenaForge`}
+	description={game.shortDescription}
+	coverImage={game.coverImage}
+>
+	<Navbar slot="navbar" />
+
+	<article class="mx-auto w-full max-w-4xl px-4 py-6 md:py-10 space-y-8">
+		{/* a) Header Section */}
+		<header class="space-y-4">
+			<nav aria-label="Breadcrumb">
+				<ol class="flex flex-wrap items-center gap-2 text-xs text-text-muted md:text-sm">
+					<li>
+						<a
+							href="/"
+							class="hover:text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+						>
+							Home
+						</a>
+					</li>
+					<li aria-hidden="true">/</li>
+					<li>
+						<a
+							href="/"
+							class="hover:text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+						>
+							Games
+						</a>
+					</li>
+					<li aria-hidden="true">/</li>
+					<li class="font-medium text-text" aria-current="page">
+						{game.title}
+					</li>
+				</ol>
+			</nav>
+
+			<div class="space-y-2">
+				<div class="flex flex-wrap items-center gap-2">
+					<span class="rounded-button bg-accent-2 px-2.5 py-1 text-xs font-semibold text-accent-foreground">
+						{game.platform}
+					</span>
+					{
+						game.genres.map((genre) => (
+							<span class="rounded-button border border-border bg-card px-2.5 py-1 text-xs text-text-muted">
+								{genre}
+							</span>
+						))
+					}
+				</div>
+
+				<h1 class="text-3xl font-bold leading-tight text-text sm:text-4xl">
+					{game.title}
+				</h1>
+
+				<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-text-muted">
+					<span>Phiên bản: <strong class="font-medium text-text">{game.version}</strong></span>
+					<span aria-hidden="true">•</span>
+					<span>Dung lượng: <strong class="font-medium text-text">{game.fileSize}</strong></span>
+					<span aria-hidden="true">•</span>
+					<span>Cập nhật: <strong class="font-medium text-text">{game.updatedAt}</strong></span>
+				</div>
+			</div>
+		</header>
+
+		{/* b) Primary CTA Card */}
+		<section aria-labelledby="download-heading" class="rounded-card border border-border bg-card p-4 sm:p-6">
+			<h2 id="download-heading" class="sr-only">Tải game {game.title}</h2>
+			<a
+				href={game.downloadUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex w-full items-center justify-center gap-2 rounded-[8px] bg-accent px-6 py-3.5 text-base font-bold text-[#121014] transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="currentColor"
+					class="h-5 w-5"
+					aria-hidden="true"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M12 2.25a.75.75 0 0 1 .75.75v11.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V3a.75.75 0 0 1 .75-.75Zm-9 13.5a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+				<span>Tải game ({game.fileSize})</span>
+			</a>
+			<p class="mt-2 text-center text-xs text-text-muted">
+				Opens a short ad page first
+			</p>
+		</section>
+
+		{/* c) Media Section */}
+		<section aria-labelledby="media-heading" class="space-y-4">
+			<h2 id="media-heading" class="text-xl font-bold text-text">Video & Hình ảnh</h2>
+			<YoutubeLite youtubeId={game.youtubeId} title={game.title} />
+
+			{
+				game.screenshots && game.screenshots.length > 0 && (
+					<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+						{game.screenshots.map((shot, idx) => (
+							<div class="aspect-video overflow-hidden rounded-card border border-border bg-card">
+								<img
+									src={shot}
+									alt={`Ảnh chụp màn hình ${game.title} - ảnh ${idx + 1}`}
+									width="800"
+									height="450"
+									loading="lazy"
+									class="h-full w-full object-cover"
+								/>
+							</div>
+						))}
+					</div>
+				)
+			}
+		</section>
+
+		{/* d) Info Section */}
+		<div class="space-y-6">
+			{/* Description */}
+			<section aria-labelledby="desc-heading" class="rounded-card border border-border bg-card p-4 sm:p-6">
+				<h2 id="desc-heading" class="mb-3 text-lg font-bold text-text">Giới thiệu game</h2>
+				<p class="text-sm leading-relaxed text-text-muted">{game.description}</p>
+			</section>
+
+			{/* Controls Table */}
+			<section aria-labelledby="controls-heading" class="rounded-card border border-border bg-card p-4 sm:p-6">
+				<h2 id="controls-heading" class="mb-3 text-lg font-bold text-text">Phím điều khiển</h2>
+				<div class="overflow-x-auto">
+					<table class="w-full text-left text-sm">
+						<thead>
+							<tr class="border-b border-border text-xs uppercase text-text-muted">
+								<th scope="col" class="pb-2 font-semibold">Hành động</th>
+								<th scope="col" class="pb-2 text-right font-semibold">Phím / Thao tác</th>
+							</tr>
+						</thead>
+						<tbody class="divide-y divide-border">
+							{
+								game.controls.map((control) => (
+									<tr>
+										<td class="py-2.5 font-medium text-text">{control.action}</td>
+										<td class="py-2.5 text-right">
+											<kbd class="inline-block rounded-button border border-border bg-background px-2.5 py-1 font-mono text-xs text-accent-2">
+												{control.key}
+											</kbd>
+										</td>
+									</tr>
+								))
+							}
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			{/* System Requirements */}
+			<section aria-labelledby="reqs-heading" class="rounded-card border border-border bg-card p-4 sm:p-6">
+				<h2 id="reqs-heading" class="mb-3 text-lg font-bold text-text">Cấu hình yêu cầu</h2>
+				<dl class="grid grid-cols-1 gap-3 sm:grid-cols-2 text-sm">
+					<div class="flex flex-col gap-1 rounded-button border border-border bg-background p-3">
+						<dt class="text-xs text-text-muted">Hệ điều hành</dt>
+						<dd class="font-medium text-text">{game.systemRequirements.os}</dd>
+					</div>
+					<div class="flex flex-col gap-1 rounded-button border border-border bg-background p-3">
+						<dt class="text-xs text-text-muted">Bộ xử lý (CPU)</dt>
+						<dd class="font-medium text-text">{game.systemRequirements.processor}</dd>
+					</div>
+					<div class="flex flex-col gap-1 rounded-button border border-border bg-background p-3">
+						<dt class="text-xs text-text-muted">Bộ nhớ (RAM)</dt>
+						<dd class="font-medium text-text">{game.systemRequirements.memory}</dd>
+					</div>
+					<div class="flex flex-col gap-1 rounded-button border border-border bg-background p-3">
+						<dt class="text-xs text-text-muted">Dung lượng ổ trống</dt>
+						<dd class="font-medium text-text">{game.systemRequirements.storage}</dd>
+					</div>
+				</dl>
+			</section>
+		</div>
+
+		{/* e) Related Games */}
+		{
+			relatedGames.length > 0 && (
+				<section aria-labelledby="related-heading" class="pt-4">
+					<h2 id="related-heading" class="mb-4 text-2xl font-bold text-text">Game liên quan</h2>
+					<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+						{relatedGames.map((related) => (
+							<GameCard game={related} />
+						))}
+					</div>
+				</section>
+			)
+		}
+	</article>
+
+	<Footer slot="footer" />
+</MainLayout>

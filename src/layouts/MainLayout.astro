@@ -4,9 +4,10 @@ import '../styles/global.css';
 interface Props {
 	title: string;
 	description: string;
+	coverImage?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, coverImage } = Astro.props;
 const siteName = 'ArenaForge';
 ---
 
@@ -24,6 +25,11 @@ const siteName = 'ArenaForge';
 		<meta property="og:locale" content="vi_VN" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
+		{coverImage && <meta property="og:image" content={coverImage} />}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		{coverImage && <meta name="twitter:image" content={coverImage} />}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 	</head>

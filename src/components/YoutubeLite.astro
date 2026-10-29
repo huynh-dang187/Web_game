@@ -1,0 +1,83 @@
+---
+interface Props {
+	youtubeId: string;
+	title: string;
+}
+
+const { youtubeId, title } = Astro.props;
+---
+
+<div
+	class="youtube-lite group relative aspect-video w-full cursor-pointer overflow-hidden rounded-card border border-border bg-card"
+	data-youtube-id={youtubeId}
+	data-title={title}
+	role="button"
+	tabindex="0"
+	aria-label={`Phát video demo ${title}`}
+>
+	<img
+		src={`https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`}
+		alt={`Video demo ${title}`}
+		width="800"
+		height="450"
+		loading="lazy"
+		class="h-full w-full object-cover"
+	/>
+	<button
+		type="button"
+		tabindex="-1"
+		aria-hidden="true"
+		class="pointer-events-none absolute inset-0 m-auto flex h-14 w-14 items-center justify-center rounded-button bg-accent text-accent-foreground transition-opacity group-hover:opacity-90"
+	>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			fill="currentColor"
+			class="h-6 w-6 translate-x-0.5"
+			aria-hidden="true"
+		>
+			<path d="M8 5v14l11-7z"></path>
+		</svg>
+	</button>
+</div>
+
+<script>
+	function initYoutubeLite() {
+		const elements = document.querySelectorAll<HTMLElement>('.youtube-lite');
+		elements.forEach((el) => {
+			const activate = () => {
+				const id = el.dataset.youtubeId;
+				const title = el.dataset.title ?? 'Video';
+				if (!id) return;
+
+				const iframe = document.createElement('iframe');
+				iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+				iframe.title = title;
+				iframe.allow =
+					'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+				iframe.allowFullscreen = true;
+				iframe.className = 'absolute inset-0 h-full w-full border-0';
+
+				el.replaceChildren(iframe);
+				el.classList.remove('cursor-pointer', 'group');
+				el.removeAttribute('role');
+				el.removeAttribute('tabindex');
+				el.removeAttribute('aria-label');
+			};
+
+			el.addEventListener('click', activate, { once: true });
+			el.addEventListener(
+				'keydown',
+				(e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						activate();
+					}
+				},
+				{ once: true }
+			);
+		});
+	}
+
+	initYoutubeLite();
+</script>

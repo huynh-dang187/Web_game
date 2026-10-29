@@ -1,9 +1,9 @@
 # TODO — ArenaForge
 
 > Cập nhật file này sau mỗi bước. Chỉ đánh dấu `[x]` khi đã kiểm chứng thực tế.
-> Nhánh hiện tại: `feat/home-page`
-> Trạng thái: tạm dừng sau Phase 3; Phase 3 hoàn thành, chưa commit.
-> Cập nhật cuối: 2026-10-28
+> Nhánh hiện tại: `feat/game-detail`
+> Trạng thái: Phase 3 đã merge vào `main`; Phase 4 hoàn thành trên `feat/game-detail`, chưa commit.
+> Cập nhật cuối: 2026-10-29
 
 ## 1. Khởi tạo dự án
 - [x] Tạo nhánh `feat/scaffold`
@@ -132,6 +132,7 @@ npx --yes tsx -e "import { getAllVisibleGames, getFeaturedGames, getGameBySlug }
 - [x] Kiểm tra 768px: 2 cột
 - [x] Kiểm tra 1280px: 3 cột
 - [x] Kiểm tra empty state khi search không có kết quả
+- [x] Commit và merge `feat/home-page` vào `main`
 
 ## Commands Phase 3
 ```powershell
@@ -165,28 +166,75 @@ node C:\Users\Admin\AppData\Local\Temp\opencode\verify-tablet.mjs
   - `arenaforge-home-desktop.png`
   - `arenaforge-home-desktop-full.png`
 
+## 10. Phase 4 — Game Detail Page & YouTube Lite
+- [x] Review Phase 3 và merge `feat/home-page` vào `main`
+- [x] Tạo và chuyển sang nhánh `feat/game-detail`
+- [x] Cập nhật `src/layouts/MainLayout.astro` nhận thêm `coverImage?: string` cho thẻ Open Graph và Twitter card
+- [x] Tạo `src/components/YoutubeLite.astro` với thumbnail 16:9, nút Play phẳng `#FF5A36`, click-to-play inject iframe `youtube-nocookie.com/embed/${youtubeId}?autoplay=1` (không load iframe ban đầu)
+- [x] Tạo `src/pages/games/[slug].astro` dùng `getStaticPaths()` với `getAllVisibleGames()` để render tĩnh toàn bộ game
+- [x] Header: Breadcrumb (`Home / Games / Title`), Tiêu đề, Badge nền tảng `#FFC247`, thể loại, phiên bản, dung lượng, ngày cập nhật
+- [x] Primary CTA Card: Nút Download `#FF5A36` (`text-[#121014]`, `rounded-[8px]`, `rel="noopener noreferrer" target="_blank"`) + ghi chú bắt buộc `"Opens a short ad page first"` ngay bên dưới
+- [x] Media section: `YoutubeLite` demo video + thư viện ảnh chụp màn hình `screenshots`
+- [x] Info section: Mô tả đầy đủ `description`, bảng phím điều khiển `controls` (`action` -> `key`), danh sách cấu hình `systemRequirements` (os, processor, memory, storage)
+- [x] Related Games: 3 game liên quan dùng `GameCard.astro` (ưu tiên cùng platform)
+- [x] `npm run build` pass, sinh ra đủ 7 trang tĩnh (`/index.html` và 6 trang `/games/*/index.html`)
+- [x] `tsc --noEmit` pass, 0 lỗi TypeScript
+- [x] Kiểm chứng 375px trên `/games/neon-talon`:
+  - Breadcrumb, Tiêu đề, Badge Mobile, thông số phiên bản, dung lượng hiển thị sạch sẽ
+  - Nút Download màu cam đỏ `#FF5A36` bo góc 8px với ghi chú `"Opens a short ad page first"` rõ ràng ngay bên dưới
+  - YouTube Lite hiển thị thumbnail + nút Play, không có iframe ban đầu; click vào container inject iframe autoplay thành công
+  - Bảng phím điều khiển hiển thị đủ 6 thao tác kèm phím bấm `<kbd>`
+  - Cấu hình yêu cầu hiển thị đủ 4 trường
+  - 3 game liên quan hiển thị đầy đủ
+- [x] Chưa commit `feat/game-detail` (đúng yêu cầu của task).
+
+## Commands Phase 4
+```powershell
+git checkout main
+git merge feat/home-page
+git checkout -b feat/game-detail
+
+npm run build
+npx --yes -p typescript tsc --noEmit
+node C:\Users\Admin\AppData\Local\Temp\opencode\verify-game-detail.mjs
+```
+
+## Kết quả Phase 4
+- Số trang tĩnh sinh ra: `7` (`/index.html` + 6 `/games/*/index.html`)
+- Thời gian build: ~`857ms`
+- TypeScript: `0` lỗi
+- Viewport 375×812 (`/games/neon-talon`):
+  - Tiêu đề: `Neon Talon — ArenaForge`
+  - H1: `Neon Talon`
+  - Breadcrumbs: `Home / Games / Neon Talon`
+  - Badge: `Mobile` (nền `rgb(255, 194, 71)`)
+  - Download CTA: `Tải game (310 MB)`, link `https://example.com/shortlink-demo`, nền `rgb(255, 90, 54)`, chữ `rgb(18, 16, 20)`, bo góc `8px`
+  - Ad note: `Opens a short ad page first` hiển thị rõ ràng ngay bên dưới
+  - YoutubeLite: ban đầu có thumbnail `hqdefault.jpg`, nút Play, không có iframe; sau click chèn iframe `youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1`
+  - Screenshots: `3` ảnh tỉ lệ 16:9
+  - Controls: `6` thao tác hiển thị bảng kèm phím `<kbd>`
+  - System Requirements: `4` mục cấu hình
+  - Related Games: `3` cards (`Cloudstep Brawlers`, `Jade Comet Clash`, `Ashfall Duelists`)
+- Screenshots:
+  - `arenaforge-neon-talon-375.png`
+  - `arenaforge-neon-talon-375-full.png`
+  - `arenaforge-neon-talon-375-youtube.png`
+
 ## Chưa làm
-- Chưa commit `feat/home-page` (đúng yêu cầu của task).
-- Chưa tạo các trang nội dung `/games/[slug]`, `/how-to-download`, `/legal`.
+- Chưa commit `feat/game-detail` (đúng yêu cầu của task).
+- Chưa tạo các trang nội dung `/how-to-download`, `/legal`.
 - Chưa có `AGENTS.md` và `docs/design/`; đang dùng `agent.md` làm context gốc.
 
-## 10. Tạm dừng — 2026-10-28
-- [x] Dừng phiên làm việc tại Phase 3
-- [x] Build và TypeScript check đã pass
-- [x] Ghi lại trạng thái vào `todo.md`
-
 ### Working tree chưa commit
-- `src/components/GameCard.astro` (file mới)
-- `src/pages/index.astro`
+- `src/layouts/MainLayout.astro`
+- `src/components/YoutubeLite.astro`
+- `src/pages/games/[slug].astro`
 - `todo.md`
 - `rule.md`
 
 ### Việc tiếp theo khi mở lại phiên
-- [ ] Review lại Phase 3 và commit `feat/home-page`
-- [ ] Merge `feat/home-page` vào `main`
-- [ ] Tạo `src/pages/games/[slug].astro`
-- [ ] Thêm nút Download + ghi chú "Opens a short ad page first"
-- [ ] Lazy embed YouTube demo
+- [ ] Review lại Phase 4 và commit `feat/game-detail`
+- [ ] Merge `feat/game-detail` vào `main`
 - [ ] Tạo trang `/how-to-download`
 - [ ] Tạo trang `/legal`
-- [ ] Test lại 375px, 768px, 1280px trước khi merge
+- [ ] Kiểm thử toàn diện toàn bộ các route trước khi merge
