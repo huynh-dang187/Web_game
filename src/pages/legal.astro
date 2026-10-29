@@ -1,0 +1,160 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<MainLayout
+	title="Chính sách & Pháp lý — ArenaForge"
+	description="Thông tin giới thiệu về ArenaForge, cam kết bản quyền, kênh liên hệ báo lỗi và chính sách quyền riêng tư."
+>
+	<Navbar slot="navbar" />
+
+	<article class="mx-auto w-full max-w-4xl px-4 py-6 md:py-10 space-y-10">
+		{/* Header & Quick Navigation */}
+		<header class="space-y-4">
+			<nav aria-label="Breadcrumb">
+				<ol class="flex flex-wrap items-center gap-2 text-xs text-text-muted md:text-sm">
+					<li>
+						<a
+							href="/"
+							class="hover:text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+						>
+							Home
+						</a>
+					</li>
+					<li aria-hidden="true">/</li>
+					<li class="font-medium text-text" aria-current="page">
+						Legal & Policies
+					</li>
+				</ol>
+			</nav>
+
+			<div class="space-y-2">
+				<h1 class="text-3xl font-bold leading-tight text-text sm:text-4xl">
+					Chính sách & Pháp lý
+				</h1>
+				<p class="text-sm text-text-muted sm:text-base leading-relaxed">
+					Quy định bản quyền sở hữu trí tuệ, kênh liên hệ hỗ trợ & gỡ bỏ nội dung, và cam kết quyền riêng tư tại ArenaForge.
+				</p>
+			</div>
+
+			<div class="flex flex-wrap gap-2 pt-2" aria-label="Mục lục chính sách">
+				<a
+					href="#about"
+					class="rounded-button border border-border bg-card px-3 py-1.5 text-xs font-semibold text-text-muted hover:border-accent hover:text-text transition-colors"
+				>
+					Về chúng tôi & Bản quyền
+				</a>
+				<a
+					href="#contact"
+					class="rounded-button border border-border bg-card px-3 py-1.5 text-xs font-semibold text-text-muted hover:border-accent hover:text-text transition-colors"
+				>
+					Liên hệ & Báo lỗi
+				</a>
+				<a
+					href="#privacy"
+					class="rounded-button border border-border bg-card px-3 py-1.5 text-xs font-semibold text-text-muted hover:border-accent hover:text-text transition-colors"
+				>
+					Quyền riêng tư & Quảng cáo
+				</a>
+			</div>
+		</header>
+
+		{/* a) #about: About ArenaForge & Copyright Policy */}
+		<section id="about" class="scroll-mt-20 rounded-card border border-border bg-card p-5 sm:p-8 space-y-4">
+			<div class="flex flex-wrap items-center gap-2">
+				<span class="rounded-button bg-accent-2 px-2.5 py-1 text-xs font-semibold text-accent-foreground">
+					Sở hữu trí tuệ
+				</span>
+				<span class="text-xs font-semibold uppercase tracking-wide text-accent-2">
+					Nguyên bản 100%
+				</span>
+			</div>
+
+			<h2 class="text-xl font-bold text-text sm:text-2xl">
+				Về ArenaForge & Chính sách Bản quyền
+			</h2>
+
+			<div class="space-y-3 text-sm leading-relaxed text-text-muted">
+				<p>
+					<strong class="text-text font-semibold">ArenaForge</strong> là nền tảng tuyển chọn và phân phối các tựa game đối kháng 2D (2D Fighting Games) được sáng tạo bởi các nhà phát triển độc lập (Indie Creators). Chúng tôi cam kết tôn trọng tuyệt đối luật sở hữu trí tuệ và quyền tác giả.
+				</p>
+				<p>
+					<strong class="text-text font-semibold">Tiêu chuẩn nguyên bản:</strong> Tất cả trò chơi, nhân vật, cốt truyện, hình ảnh và âm thanh được giới thiệu trên nền tảng phải là tác phẩm nguyên bản của tác giả hoặc sử dụng các tài nguyên (assets) có giấy phép thương mại hợp pháp rõ ràng.
+				</p>
+				<p class="rounded-button border border-border bg-background p-3.5 text-xs text-[#FFC247]">
+					<strong>Cam kết không vi phạm:</strong> ArenaForge kiên quyết nói KHÔNG với phần mềm lậu, bản mod trái phép, file bẻ khóa (cracks), các nhân vật thương hiệu có bản quyền bên thứ ba (anime, truyện tranh, phim ảnh thương mại) và nội dung người lớn. Mọi thông tin mẫu trong giai đoạn phát triển đều là tên hư cấu.
+				</p>
+			</div>
+		</section>
+
+		{/* b) #contact: Contact & Takedown / Broken Link Reporting */}
+		<section id="contact" class="scroll-mt-20 rounded-card border border-border bg-card p-5 sm:p-8 space-y-4">
+			<span class="inline-block rounded-button bg-accent px-2.5 py-1 text-xs font-bold text-accent-foreground">
+				Hỗ trợ trực tuyến
+			</span>
+
+			<h2 class="text-xl font-bold text-text sm:text-2xl">
+				Liên hệ, Báo link hỏng & Yêu cầu gỡ bỏ (Takedown)
+			</h2>
+
+			<div class="space-y-3 text-sm leading-relaxed text-text-muted">
+				<p>
+					Nếu bạn phát hiện liên kết tải bị hỏng, game gặp lỗi kỹ thuật, hoặc bạn là chủ sở hữu quyền tác giả có yêu cầu liên quan đến sở hữu trí tuệ, xin vui lòng gửi email về hòm thư đại diện:
+				</p>
+
+				<div class="rounded-button border border-border bg-background p-4 text-center sm:text-left">
+					<p class="text-xs uppercase text-text-muted font-semibold tracking-wider">Email liên hệ chính thức:</p>
+					<a
+						href="mailto:contact@arenaforge.example"
+						class="mt-1 inline-block text-lg font-bold text-accent hover:text-accent-2 transition-colors"
+					>
+						contact@arenaforge.example
+					</a>
+				</div>
+
+				<h3 class="text-base font-bold text-text pt-2">Hướng dẫn soạn email để được hỗ trợ nhanh nhất:</h3>
+				<ul class="list-disc list-inside space-y-1.5 text-xs sm:text-sm pl-1">
+					<li>
+						<strong class="text-text font-medium">Tiêu đề email:</strong> Ghi rõ tiền tố theo nhu cầu, ví dụ: <code class="rounded bg-background px-1.5 py-0.5 text-accent-2 font-mono text-xs">[Broken Link]</code>, <code class="rounded bg-background px-1.5 py-0.5 text-accent-2 font-mono text-xs">[Takedown Notice]</code> hoặc <code class="rounded bg-background px-1.5 py-0.5 text-accent-2 font-mono text-xs">[Inquiry]</code>.
+					</li>
+					<li>
+						<strong class="text-text font-medium">Thông tin trò chơi:</strong> Tên tựa game và đường dẫn URL bài viết trên ArenaForge.
+					</li>
+					<li>
+						<strong class="text-text font-medium">Mô tả cụ thể:</strong> Chi tiết lỗi tải / bản chụp màn hình hoặc tài liệu chứng minh quyền tác giả hợp pháp nếu gửi yêu cầu gỡ bỏ.
+					</li>
+				</ul>
+				<p class="text-xs text-text-muted">
+					* Thời gian phản hồi thông thường: trong vòng <strong class="text-text">24 - 48 giờ làm việc</strong> kể từ khi tiếp nhận thư.
+				</p>
+			</div>
+		</section>
+
+		{/* c) #privacy: Privacy & Monetization Disclosure */}
+		<section id="privacy" class="scroll-mt-20 rounded-card border border-border bg-card p-5 sm:p-8 space-y-4">
+			<span class="inline-block rounded-button border border-border bg-background px-2.5 py-1 text-xs font-semibold text-text-muted">
+				Bảo mật & Minh bạch
+			</span>
+
+			<h2 class="text-xl font-bold text-text sm:text-2xl">
+				Chính sách Quyền riêng tư & Minh bạch Quảng cáo
+			</h2>
+
+			<div class="space-y-3 text-sm leading-relaxed text-text-muted">
+				<p>
+					<strong class="text-text font-semibold">1. Thu thập dữ liệu cá nhân:</strong> Trong giai đoạn tĩnh (Phase 1), ArenaForge <strong class="text-text font-semibold">không yêu cầu tạo tài khoản</strong>, không lưu trữ thông tin đăng nhập, không thu thập họ tên, số điện thoại hay thông tin thanh toán của người dùng.
+				</p>
+				<p>
+					<strong class="text-text font-semibold">2. Đo lường lượt truy cập ẩn danh:</strong> Trang web có thể sử dụng các công cụ phân tích lưu lượng cơ bản nhằm theo dõi tổng số lượt xem trang, tỷ lệ thiết bị (mobile/desktop) để tối ưu trải nghiệm tốc độ 4G. Toàn bộ số liệu đều ẩn danh và không định danh từng cá nhân.
+				</p>
+				<p>
+					<strong class="text-text font-semibold">3. Minh bạch về liên kết quảng cáo (Monetized Shortlinks):</strong> Nút "Tải game" trên các trang chi tiết sử dụng dịch vụ rút gọn liên kết có gắn quảng cáo ngắn. Các dịch vụ của bên thứ ba này có thể sử dụng cookie phiên duyệt để đếm lượt tải hợp lệ. Khoản thu nhập nhỏ từ việc xem quảng cáo giúp bù đắp chi phí lưu trữ đám mây và ủng hộ lập trình viên làm game miễn phí.
+				</p>
+			</div>
+		</section>
+	</article>
+
+	<Footer slot="footer" />
+</MainLayout>

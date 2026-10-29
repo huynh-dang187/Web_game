@@ -1,0 +1,204 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const steps = [
+	{
+		number: '01',
+		title: 'Bấm nút Tải game màu cam',
+		badge: 'Bước 1',
+		description:
+			'Tìm tựa game đối kháng 2D yêu thích trên ArenaForge và truy cập trang chi tiết. Tại đây, nhấn vào nút "Tải game" nổi bật màu cam (#FF5A36) kèm dung lượng file tương ứng.',
+		tips: 'Mỗi game đều ghi rõ dung lượng file và hệ điều hành hỗ trợ (PC hoặc Mobile).',
+	},
+	{
+		number: '02',
+		title: 'Vượt qua trang liên kết quảng cáo ngắn',
+		badge: 'Bước 2',
+		description:
+			'Hệ thống sẽ chuyển hướng bạn qua một trang liên kết rút gọn ngắn. Đây là nguồn kinh phí duy nhất giúp duy trì máy chủ và ủng hộ các nhà phát triển game indie tiếp tục sáng tạo các sản phẩm miễn phí.',
+		warning:
+			'Lưu ý an toàn: Tuyệt đối bỏ qua các banner quảng cáo hoặc popup nhảy trang lạ. Chỉ đợi bộ đếm giây kết thúc và nhấn nút "Get Link" hoặc "Bỏ qua quảng cáo" chính thức để được chuyển đến file game.',
+	},
+	{
+		number: '03',
+		title: 'Tải file từ máy chủ lưu trữ an toàn',
+		badge: 'Bước 3',
+		description:
+			'Sau khi chuyển hướng thành công, bạn sẽ đến trang tải file trực tiếp tại các nền tảng lưu trữ an toàn và uy tín như itch.io, GitHub Releases hoặc Google Drive. Nhấn nút Tải xuống để lưu file về thiết bị.',
+		tips: 'Tất cả file phát hành đều được quét sạch mã độc trước khi đưa lên liên kết tải.',
+	},
+	{
+		number: '04',
+		title: 'Giải nén (PC) hoặc Cài đặt APK (Android)',
+		badge: 'Bước 4',
+		description:
+			'Khi quá trình tải hoàn tất, bạn có thể khởi chạy và thưởng thức game ngay theo hướng dẫn cho từng nền tảng:',
+		subSteps: [
+			{
+				platform: 'PC (Windows)',
+				guide: 'Nhấp chuột phải vào file .zip vừa tải, chọn "Extract All" (Giải nén). Vào thư mục vừa giải nén và nhấp đúp vào file .exe để chơi ngay.',
+			},
+			{
+				platform: 'Mobile (Android)',
+				guide: 'Mở file .apk trong thư mục Tải về (Downloads) trên điện thoại và chọn Cài đặt. Nếu có lời nhắc bảo mật, xem phần FAQ bên dưới.',
+			},
+		],
+	},
+];
+
+const faqs = [
+	{
+		question: 'Android hiển thị thông báo "Cài đặt ứng dụng không rõ nguồn gốc"?',
+		answer:
+			'Vì các tựa game indie tại ArenaForge được phân phối trực tiếp dưới dạng file .apk độc lập (không qua Google Play Store), hệ điều hành Android sẽ hiển thị cảnh báo bảo vệ mặc định. Bạn chỉ cần chọn "Cài đặt" -> Cho phép cài đặt ứng dụng từ nguồn này (Trình duyệt hoặc Quản lý tệp). Toàn bộ file game đều an toàn và không chứa phần mềm độc hại.',
+	},
+	{
+		question: 'Windows SmartScreen hiển thị cảnh báo "Windows protected your PC"?',
+		answer:
+			'Đây là thông báo bảo vệ tiêu chuẩn của Microsoft đối với các phần mềm mới xuất xưởng từ các studio indie độc lập chưa mua chứng chỉ số đắt tiền. Bạn chỉ cần nhấp vào dòng chữ "More info" (Xem thêm), sau đó nhấn nút "Run anyway" (Vẫn chạy) để mở game.',
+	},
+	{
+		question: 'Liên kết tải bị lỗi, tải chậm hoặc file bị xoá?',
+		answer:
+			'Nếu bạn gặp sự cố link tải bị hỏng hoặc máy chủ lưu trữ không phản hồi, vui lòng thông báo cho đội ngũ qua mục [Liên hệ & Báo lỗi](/legal#contact). Chúng tôi sẽ cập nhật link dự phòng thay thế trong vòng 24 giờ.',
+	},
+];
+---
+
+<MainLayout
+	title="Hướng dẫn tải & cài đặt game — ArenaForge"
+	description="Hướng dẫn chi tiết 4 bước tải và cài đặt an toàn các tựa game đối kháng 2D indie tại ArenaForge trên PC và Android."
+>
+	<Navbar slot="navbar" />
+
+	<article class="mx-auto w-full max-w-4xl px-4 py-6 md:py-10 space-y-10">
+		{/* Header */}
+		<header class="space-y-4">
+			<nav aria-label="Breadcrumb">
+				<ol class="flex flex-wrap items-center gap-2 text-xs text-text-muted md:text-sm">
+					<li>
+						<a
+							href="/"
+							class="hover:text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+						>
+							Home
+						</a>
+					</li>
+					<li aria-hidden="true">/</li>
+					<li class="font-medium text-text" aria-current="page">
+						How to Download
+					</li>
+				</ol>
+			</nav>
+
+			<div class="space-y-2">
+				<h1 class="text-3xl font-bold leading-tight text-text sm:text-4xl">
+					Hướng dẫn tải & cài đặt game
+				</h1>
+				<p class="text-sm text-text-muted sm:text-base leading-relaxed">
+					Quy trình 4 bước đơn giản, minh bạch và an toàn để tải xuống và trải nghiệm các tựa game đối kháng 2D indie nguyên bản trên ArenaForge.
+				</p>
+			</div>
+		</header>
+
+		{/* 4-Step Visual Guide */}
+		<section aria-labelledby="steps-heading" class="space-y-6">
+			<h2 id="steps-heading" class="text-2xl font-bold text-text">
+				4 bước tải game an toàn
+			</h2>
+
+			<div class="space-y-4">
+				{
+					steps.map((step) => (
+						<div class="rounded-card border border-border bg-card p-5 sm:p-6 space-y-3">
+							<div class="flex items-center justify-between gap-3">
+								<span class="rounded-button bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">
+									{step.badge}
+								</span>
+								<span class="font-mono text-xs font-semibold text-text-muted">
+									{step.number}
+								</span>
+							</div>
+
+							<h3 class="text-lg font-bold text-text sm:text-xl">
+								{step.title}
+							</h3>
+
+							<p class="text-sm leading-relaxed text-text-muted">
+								{step.description}
+							</p>
+
+							{step.warning && (
+								<div class="rounded-button border border-border bg-background p-3.5 text-xs leading-relaxed text-[#FFC247]">
+									<strong class="font-bold">Lưu ý quan trọng:</strong> {step.warning}
+								</div>
+							)}
+
+							{step.tips && (
+								<div class="rounded-button border border-border bg-background p-3.5 text-xs leading-relaxed text-text-muted">
+									<strong class="font-medium text-text">Mẹo:</strong> {step.tips}
+								</div>
+							)}
+
+							{step.subSteps && (
+								<div class="grid grid-cols-1 gap-3 pt-1 sm:grid-cols-2">
+									{step.subSteps.map((sub) => (
+										<div class="rounded-button border border-border bg-background p-3.5 space-y-1">
+											<span class="inline-block rounded-button bg-accent-2 px-2 py-0.5 text-xs font-semibold text-accent-foreground">
+												{sub.platform}
+											</span>
+											<p class="text-xs leading-relaxed text-text-muted pt-1">
+												{sub.guide}
+											</p>
+										</div>
+									))}
+								</div>
+							)}
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		{/* FAQ Section */}
+		<section aria-labelledby="faq-heading" class="space-y-6 pt-2">
+			<div>
+				<h2 id="faq-heading" class="text-2xl font-bold text-text">
+					Câu hỏi thường gặp (FAQ)
+				</h2>
+				<p class="mt-1 text-sm text-text-muted">
+					Giải đáp các thắc mắc và xử lý cảnh báo hệ thống khi cài đặt game độc lập.
+				</p>
+			</div>
+
+			<div class="space-y-4">
+				{
+					faqs.map((faq) => (
+						<div class="rounded-card border border-border bg-card p-5 sm:p-6 space-y-2">
+							<h3 class="text-base font-bold text-text sm:text-lg">
+								{faq.question}
+							</h3>
+							<p class="text-sm leading-relaxed text-text-muted">
+								{faq.answer.includes('[Liên hệ & Báo lỗi]') ? (
+									<>
+										Nếu bạn gặp sự cố link tải bị hỏng hoặc máy chủ lưu trữ không phản hồi, vui lòng thông báo cho đội ngũ qua mục{' '}
+										<a href="/legal#contact" class="font-medium text-accent underline hover:text-accent-2">
+											Liên hệ & Báo lỗi
+										</a>
+										. Chúng tôi sẽ cập nhật link dự phòng thay thế trong vòng 24 giờ.
+									</>
+								) : (
+									faq.answer
+								)}
+							</p>
+						</div>
+					))
+				}
+			</div>
+		</section>
+	</article>
+
+	<Footer slot="footer" />
+</MainLayout>

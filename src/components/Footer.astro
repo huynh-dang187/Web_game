@@ -1,9 +1,9 @@
 ---
 const links = [
-	{ label: 'About', href: '/about' },
-	{ label: 'Contact', href: '/contact' },
+	{ label: 'About', href: '/legal#about' },
+	{ label: 'Contact', href: '/legal#contact' },
 	{ label: 'How to Download', href: '/how-to-download' },
-	{ label: 'Privacy', href: '/legal' },
+	{ label: 'Privacy', href: '/legal#privacy' },
 ];
 ---
 
@@ -16,7 +16,7 @@ const links = [
 				{
 					links.map((link) => (
 						<li>
-							<a href={link.href} class="hover:text-text">
+							<a href={link.href} class="hover:text-text transition-colors">
 								{link.label}
 							</a>
 						</li>

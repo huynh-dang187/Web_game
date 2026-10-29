@@ -1,8 +1,8 @@
 # TODO — ArenaForge
 
 > Cập nhật file này sau mỗi bước. Chỉ đánh dấu `[x]` khi đã kiểm chứng thực tế.
-> Nhánh hiện tại: `feat/game-detail`
-> Trạng thái: Phase 3 đã merge vào `main`; Phase 4 hoàn thành trên `feat/game-detail`, chưa commit.
+> Nhánh hiện tại: `feat/static-pages`
+> Trạng thái: Phase 4 đã merge vào `main`; Phase 5 hoàn thành trên `feat/static-pages`, chưa commit.
 > Cập nhật cuối: 2026-10-29
 
 ## 1. Khởi tạo dự án
@@ -179,14 +179,8 @@ node C:\Users\Admin\AppData\Local\Temp\opencode\verify-tablet.mjs
 - [x] Related Games: 3 game liên quan dùng `GameCard.astro` (ưu tiên cùng platform)
 - [x] `npm run build` pass, sinh ra đủ 7 trang tĩnh (`/index.html` và 6 trang `/games/*/index.html`)
 - [x] `tsc --noEmit` pass, 0 lỗi TypeScript
-- [x] Kiểm chứng 375px trên `/games/neon-talon`:
-  - Breadcrumb, Tiêu đề, Badge Mobile, thông số phiên bản, dung lượng hiển thị sạch sẽ
-  - Nút Download màu cam đỏ `#FF5A36` bo góc 8px với ghi chú `"Opens a short ad page first"` rõ ràng ngay bên dưới
-  - YouTube Lite hiển thị thumbnail + nút Play, không có iframe ban đầu; click vào container inject iframe autoplay thành công
-  - Bảng phím điều khiển hiển thị đủ 6 thao tác kèm phím bấm `<kbd>`
-  - Cấu hình yêu cầu hiển thị đủ 4 trường
-  - 3 game liên quan hiển thị đầy đủ
-- [x] Chưa commit `feat/game-detail` (đúng yêu cầu của task).
+- [x] Kiểm chứng 375px trên `/games/neon-talon`
+- [x] Commit `2013759` trên `feat/game-detail` và merge vào `main`
 
 ## Commands Phase 4
 ```powershell
@@ -197,6 +191,9 @@ git checkout -b feat/game-detail
 npm run build
 npx --yes -p typescript tsc --noEmit
 node C:\Users\Admin\AppData\Local\Temp\opencode\verify-game-detail.mjs
+git commit -am "feat : Game Detail Page & YouTube Lite"
+git checkout main
+git merge feat/game-detail
 ```
 
 ## Kết quả Phase 4
@@ -220,21 +217,79 @@ node C:\Users\Admin\AppData\Local\Temp\opencode\verify-game-detail.mjs
   - `arenaforge-neon-talon-375-full.png`
   - `arenaforge-neon-talon-375-youtube.png`
 
+## 11. Phase 5 — Static Pages & Final MVP Polish
+- [x] Tạo nhánh `feat/static-pages` từ `main`
+- [x] Tạo `src/pages/how-to-download.astro`:
+  - 4 bước trực quan: Bấm nút Download cam -> Vượt trang shortlink quảng cáo -> Tải từ máy chủ an toàn -> Cài đặt PC (.zip) hoặc Mobile (.apk)
+  - Cảnh báo an toàn minh bạch về quảng cáo, lưu ý không click popup lạ
+  - Phần FAQ giải đáp chi tiết cảnh báo Android "Install unknown apps" và Windows SmartScreen
+- [x] Tạo `src/pages/legal.astro` với 3 anchor sections rõ ràng:
+  - `#about`: Về ArenaForge & Bản quyền (100% nguyên bản, zero-tolerance với phần mềm lậu, mod, crack, IP thương hiệu bên thứ 3)
+  - `#contact`: Liên hệ & Báo link hỏng / Takedown email (`contact@arenaforge.example`, hướng dẫn tiêu đề email, phản hồi 24-48h)
+  - `#privacy`: Chính sách Quyền riêng tư & Minh bạch quảng cáo (không tài khoản cá nhân, phân tích ẩn danh, shortlinks tài trợ)
+- [x] Cập nhật `src/components/Footer.astro` trỏ chính xác:
+  - About -> `/legal#about`
+  - Contact -> `/legal#contact`
+  - How to Download -> `/how-to-download`
+  - Privacy -> `/legal#privacy`
+  - 0 liên kết chết (broken link / 404)
+- [x] Cập nhật `src/components/Navbar.astro` và `src/pages/index.astro` hỗ trợ tìm kiếm chuyển tiếp `/?q=...`
+- [x] `npm run build` pass, sinh ra đủ **9 trang tĩnh**:
+  - `/index.html`
+  - `/how-to-download/index.html`
+  - `/legal/index.html`
+  - `/games/ashfall-duelists/index.html`
+  - `/games/ironbloom-arena/index.html`
+  - `/games/frostlane-rivals/index.html`
+  - `/games/neon-talon/index.html`
+  - `/games/cloudstep-brawlers/index.html`
+  - `/games/jade-comet-clash/index.html`
+- [x] `tsc --noEmit` pass, 0 lỗi TypeScript
+- [x] Kiểm chứng viewport 375×812 trên mobile cho toàn bộ các trang và liên kết:
+  - `/how-to-download`: 4 bước, 3 FAQ, footer 4 links
+  - `/legal`: 3 anchors `#about`, `#contact`, `#privacy`, email liên hệ, footer 4 links
+  - Kiểm tra 12 URL toàn site: tất cả trả về HTTP 200 OK
+- [x] Chưa commit `feat/static-pages` (đúng yêu cầu của task).
+
+## Commands Phase 5
+```powershell
+git checkout main
+git merge feat/game-detail
+git checkout -b feat/static-pages
+
+npm run build
+npx --yes -p typescript tsc --noEmit
+node C:\Users\Admin\AppData\Local\Temp\opencode\verify-static-pages.mjs
+```
+
+## Kết quả Phase 5
+- Tổng số trang tĩnh sinh ra: `9` trang
+- Thời gian build: ~`908ms`
+- TypeScript: `0` lỗi
+- Kiểm tra toàn trang (375×812):
+  - `/how-to-download`: 4 thẻ bước, 3 FAQ, footer 4 links
+  - `/legal`: 3 anchors `#about`, `#contact`, `#privacy`, email liên hệ, footer 4 links
+  - Kiểm tra 12 URL toàn site: tất cả trả về HTTP 200 OK, không có liên kết 404
+- Screenshots:
+  - `arenaforge-how-to-download-375.png`
+  - `arenaforge-how-to-download-375-full.png`
+  - `arenaforge-legal-375.png`
+  - `arenaforge-legal-375-full.png`
+
 ## Chưa làm
-- Chưa commit `feat/game-detail` (đúng yêu cầu của task).
-- Chưa tạo các trang nội dung `/how-to-download`, `/legal`.
+- Chưa commit `feat/static-pages` (đúng yêu cầu của task).
 - Chưa có `AGENTS.md` và `docs/design/`; đang dùng `agent.md` làm context gốc.
 
 ### Working tree chưa commit
-- `src/layouts/MainLayout.astro`
-- `src/components/YoutubeLite.astro`
-- `src/pages/games/[slug].astro`
+- `src/pages/how-to-download.astro`
+- `src/pages/legal.astro`
+- `src/components/Footer.astro`
+- `src/components/Navbar.astro`
+- `src/pages/index.astro`
 - `todo.md`
 - `rule.md`
 
 ### Việc tiếp theo khi mở lại phiên
-- [ ] Review lại Phase 4 và commit `feat/game-detail`
-- [ ] Merge `feat/game-detail` vào `main`
-- [ ] Tạo trang `/how-to-download`
-- [ ] Tạo trang `/legal`
-- [ ] Kiểm thử toàn diện toàn bộ các route trước khi merge
+- [ ] Review lại Phase 5 và commit `feat/static-pages`
+- [ ] Merge `feat/static-pages` vào `main`
+- [ ] Chuẩn bị deploy lên Cloudflare Pages

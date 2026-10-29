@@ -10,10 +10,10 @@
 > 5. Prompt của task hiện tại
 
 ## Trạng thái hiện tại
-- Nhánh: `feat/game-detail`
-- Phase 1, Phase 2, Phase 3 đã commit và merge vào `main`.
-- Phase 4 đã hoàn thành (`YoutubeLite`, `games/[slug].astro`), chưa commit.
-- Đã build trang chủ và toàn bộ 6 trang `/games/[slug]`; chưa build `/how-to-download`, `/legal`.
+- Nhánh: `feat/static-pages`
+- Phase 1, Phase 2, Phase 3, Phase 4 đã commit và merge vào `main`.
+- Phase 5 đã hoàn thành (`how-to-download.astro`, `legal.astro`, cập nhật `Footer`, `Navbar`), chưa commit.
+- Đã build hoàn chỉnh toàn bộ 9 trang tĩnh (trang chủ, 6 trang chi tiết game, hướng dẫn tải, pháp lý).
 
 ## Stack
 - Astro `7.4.2`, static output
@@ -39,7 +39,9 @@ src/
 ├── pages/
 │   ├── games/
 │   │   └── [slug].astro
-│   └── index.astro
+│   ├── how-to-download.astro
+│   ├── index.astro
+│   └── legal.astro
 ├── styles/
 │   └── global.css
 └── types/
@@ -69,23 +71,13 @@ src/
 - `getAllVisibleGames()` và `getFeaturedGames()` chỉ trả game `isVisible`.
 - `getGameBySlug()` chỉ trả game visible.
 
-## Home page
-- Hero lấy `getFeaturedGames()[0]`, fallback `getAllVisibleGames()[0]`.
-- Filter tabs dùng `data-filter` với giá trị `all`, `PC`, `Mobile`.
-- Search dùng `#site-search` trong Navbar, lọc theo `data-title`.
-- Card dùng `data-platform` và `data-title` để lọc client-side.
-- Grid: `1` cột mobile, `2` cột từ `md`, `3` cột từ `lg`.
-- Empty state dùng `#empty-state`, hiển thị khi không còn card nào khớp.
-
-## Game Detail page (`/games/[slug]`)
-- Sử dụng `getStaticPaths()` tiền kết xuất tất cả game visible.
-- Truyền `title`, `description`, `coverImage` vào `MainLayout` cho SEO/Open Graph tags.
-- Thứ tự khối nội dung (Mobile-first):
-  1. Header: Breadcrumb (`Home / Games / Title`), Title, Badge `#FFC247`, genres, version, file size, updated date.
-  2. Primary CTA Card: Nút Download `#FF5A36` (`text-[#121014]`, `rounded-[8px]`, `rel="noopener noreferrer" target="_blank"`) + ghi chú bắt buộc: `"Opens a short ad page first"`.
-  3. Media section: `YoutubeLite` demo video (chỉ chèn iframe `youtube-nocookie.com` khi click) + lưới ảnh `screenshots`.
-  4. Info section: Mô tả `description`, bảng phím điều khiển `controls`, danh sách cấu hình `systemRequirements`.
-  5. Related games: 3 game liên quan dùng `GameCard.astro`.
+## Navigation & Liên kết chân trang (Footer)
+- Footer có 4 link chuẩn:
+  - `About`: `/legal#about`
+  - `Contact`: `/legal#contact`
+  - `How to Download`: `/how-to-download`
+  - `Privacy`: `/legal#privacy`
+- Không có bất kỳ liên kết chết (broken link / 404) nào trên toàn bộ trang web.
 
 ## Quy ước bắt buộc
 - Mobile-first, tối ưu cho 4G, hạn chế JavaScript phía client.
@@ -110,4 +102,5 @@ npx --yes -p typescript tsc --noEmit
 - 2026-10-28: Hoàn thành scaffold trên nhánh `feat/scaffold`, merge vào `main`.
 - 2026-10-28: Hoàn thành Phase 2 (types, mock data, helpers) trên `feat/mock-data`, merge vào `main`.
 - 2026-10-28: Hoàn thành Phase 3 (home page, GameCard, filter/search) trên `feat/home-page`, merge vào `main`.
-- 2026-10-29: Hoàn thành Phase 4 (Game Detail Page, YoutubeLite, SEO og:image) trên nhánh `feat/game-detail`.
+- 2026-10-29: Hoàn thành Phase 4 (Game Detail Page, YoutubeLite, SEO og:image) trên nhánh `feat/game-detail`, merge vào `main`.
+- 2026-10-29: Hoàn thành Phase 5 (Static Pages: How to Download, Legal, Footer polish) trên nhánh `feat/static-pages`.
