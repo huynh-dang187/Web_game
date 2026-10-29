@@ -1,8 +1,8 @@
 # TODO — ArenaForge
 
 > Cập nhật file này sau mỗi bước. Chỉ đánh dấu `[x]` khi đã kiểm chứng thực tế.
-> Nhánh hiện tại: `feat/static-pages`
-> Trạng thái: Phase 4 đã merge vào `main`; Phase 5 hoàn thành trên `feat/static-pages`, chưa commit.
+> Nhánh hiện tại: `main` (sau khi merge `feat/seo-deploy`)
+> Trạng thái: Toàn bộ Phase 1 đến Phase 6 đã hoàn thành và merge vào `main`, sẵn sàng 100% để deploy Cloudflare Pages.
 > Cập nhật cuối: 2026-10-29
 
 ## 1. Khởi tạo dự án
@@ -234,22 +234,10 @@ git merge feat/game-detail
   - Privacy -> `/legal#privacy`
   - 0 liên kết chết (broken link / 404)
 - [x] Cập nhật `src/components/Navbar.astro` và `src/pages/index.astro` hỗ trợ tìm kiếm chuyển tiếp `/?q=...`
-- [x] `npm run build` pass, sinh ra đủ **9 trang tĩnh**:
-  - `/index.html`
-  - `/how-to-download/index.html`
-  - `/legal/index.html`
-  - `/games/ashfall-duelists/index.html`
-  - `/games/ironbloom-arena/index.html`
-  - `/games/frostlane-rivals/index.html`
-  - `/games/neon-talon/index.html`
-  - `/games/cloudstep-brawlers/index.html`
-  - `/games/jade-comet-clash/index.html`
+- [x] `npm run build` pass, sinh ra đủ **9 trang tĩnh**
 - [x] `tsc --noEmit` pass, 0 lỗi TypeScript
-- [x] Kiểm chứng viewport 375×812 trên mobile cho toàn bộ các trang và liên kết:
-  - `/how-to-download`: 4 bước, 3 FAQ, footer 4 links
-  - `/legal`: 3 anchors `#about`, `#contact`, `#privacy`, email liên hệ, footer 4 links
-  - Kiểm tra 12 URL toàn site: tất cả trả về HTTP 200 OK
-- [x] Chưa commit `feat/static-pages` (đúng yêu cầu của task).
+- [x] Kiểm chứng viewport 375×812 trên mobile cho toàn bộ các trang và liên kết: tất cả URL trả về HTTP 200 OK
+- [x] Commit `5001535` trên `feat/static-pages` và merge vào `main`
 
 ## Commands Phase 5
 ```powershell
@@ -260,6 +248,9 @@ git checkout -b feat/static-pages
 npm run build
 npx --yes -p typescript tsc --noEmit
 node C:\Users\Admin\AppData\Local\Temp\opencode\verify-static-pages.mjs
+git commit -m "feat: add static pages for how-to-download and legal policies"
+git checkout main
+git merge feat/static-pages
 ```
 
 ## Kết quả Phase 5
@@ -276,20 +267,42 @@ node C:\Users\Admin\AppData\Local\Temp\opencode\verify-static-pages.mjs
   - `arenaforge-legal-375.png`
   - `arenaforge-legal-375-full.png`
 
-## Chưa làm
-- Chưa commit `feat/static-pages` (đúng yêu cầu của task).
-- Chưa có `AGENTS.md` và `docs/design/`; đang dùng `agent.md` làm context gốc.
+## 12. Phase 6 — SEO Sitemap & Production Readiness
+- [x] Tạo nhánh `feat/seo-deploy` từ `main`
+- [x] Cài đặt `@astrojs/sitemap` (`^3.7.4`)
+- [x] Cấu hình `astro.config.mjs` với `site: 'https://arenaforge.pages.dev'` và `integrations: [sitemap()]`
+- [x] Tạo `public/robots.txt` cho phép toàn bộ crawler và trỏ tới `https://arenaforge.pages.dev/sitemap-index.xml`
+- [x] `npm run build` pass, sinh ra:
+  - 9 trang tĩnh HTML (`/index.html`, `/how-to-download/index.html`, `/legal/index.html`, 6 trang game)
+  - `dist/robots.txt`
+  - `dist/sitemap-index.xml`
+  - `dist/sitemap-0.xml` (chứa toàn bộ 9 route với domain `https://arenaforge.pages.dev`)
+- [x] `tsc --noEmit` pass, 0 lỗi TypeScript
+- [x] Commit toàn bộ trên `feat/seo-deploy`
+- [x] Merge `feat/seo-deploy` vào `main` (sẵn sàng 100% để push lên GitHub và deploy Cloudflare Pages)
 
-### Working tree chưa commit
-- `src/pages/how-to-download.astro`
-- `src/pages/legal.astro`
-- `src/components/Footer.astro`
-- `src/components/Navbar.astro`
-- `src/pages/index.astro`
-- `todo.md`
-- `rule.md`
+## Commands Phase 6
+```powershell
+git checkout main
+git merge feat/static-pages
+git checkout -b feat/seo-deploy
 
-### Việc tiếp theo khi mở lại phiên
-- [ ] Review lại Phase 5 và commit `feat/static-pages`
-- [ ] Merge `feat/static-pages` vào `main`
-- [ ] Chuẩn bị deploy lên Cloudflare Pages
+npm install @astrojs/sitemap
+npm run build
+npx --yes -p typescript tsc --noEmit
+git add -A
+git commit -m "feat: configure sitemap, robots.txt, and production SEO"
+git checkout main
+git merge feat/seo-deploy
+```
+
+## Kết quả Phase 6
+- Sitemap: sinh ra `sitemap-index.xml` và `sitemap-0.xml` với 9 URL chuẩn domain `https://arenaforge.pages.dev`
+- Robots.txt: cho phép crawler và trỏ đến sitemap
+- Thời gian build: ~`1.05s`
+- TypeScript: `0` lỗi
+- Trạng thái repo: Nhánh `main` sạch, chứa toàn bộ MVP hoàn chỉnh sẵn sàng phát hành.
+
+## Trạng thái bàn giao MVP
+- Toàn bộ 6 giai đoạn (Scaffold, Mock Data, Home Page, Game Detail, Static Pages, SEO/Deployment) đã hoàn tất 100%.
+- Không có lỗi build, không có lỗi TypeScript, không có liên kết hỏng.

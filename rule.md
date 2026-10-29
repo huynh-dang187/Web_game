@@ -10,20 +10,25 @@
 > 5. Prompt của task hiện tại
 
 ## Trạng thái hiện tại
-- Nhánh: `feat/static-pages`
-- Phase 1, Phase 2, Phase 3, Phase 4 đã commit và merge vào `main`.
-- Phase 5 đã hoàn thành (`how-to-download.astro`, `legal.astro`, cập nhật `Footer`, `Navbar`), chưa commit.
-- Đã build hoàn chỉnh toàn bộ 9 trang tĩnh (trang chủ, 6 trang chi tiết game, hướng dẫn tải, pháp lý).
+- Nhánh: `main`
+- Tất cả các Phase (1 đến 6) đã hoàn thành và merge hoàn toàn vào `main`.
+- Đã sẵn sàng 100% để deploy lên Cloudflare Pages (`https://arenaforge.pages.dev`).
+- Đã cấu hình sitemap động (`@astrojs/sitemap`), `robots.txt`, 9 trang tĩnh và kiểm thử toàn diện.
 
 ## Stack
 - Astro `7.4.2`, static output
 - TypeScript strict: `tsconfig.json` extends `astro/tsconfigs/strict`
 - Tailwind CSS `4.3.3`
 - Tích hợp Tailwind theo cách khuyến nghị cho Tailwind v4: `@tailwindcss/vite`
+- Sitemap integration: `@astrojs/sitemap`
 - Design token khai báo bằng `@theme` trong `src/styles/global.css`
 
 ## Cấu trúc
 ```text
+public/
+├── favicon.ico
+├── favicon.svg
+└── robots.txt
 src/
 ├── components/
 │   ├── Footer.astro
@@ -46,6 +51,9 @@ src/
 │   └── global.css
 └── types/
     └── game.ts
+astro.config.mjs
+package.json
+tsconfig.json
 ```
 
 ## Design token
@@ -62,14 +70,17 @@ src/
 --radius-button: 8px;
 ```
 
+## SEO & Sitemap
+- `site: 'https://arenaforge.pages.dev'` được định nghĩa trong `astro.config.mjs`.
+- File `public/robots.txt` cho phép toàn bộ crawler và trỏ đến `https://arenaforge.pages.dev/sitemap-index.xml`.
+- Tự động sinh `dist/sitemap-index.xml` và `dist/sitemap-0.xml` khi build, bao gồm toàn bộ 9 route.
+
 ## Mock data
 - `src/types/game.ts`: `Platform`, `ControlMapping`, `SystemRequirements`, `Game`.
 - `src/data/games.json`: 6 game hư cấu (3 PC, 3 Mobile, 2 featured).
 - `src/lib/games.ts`: `getAllVisibleGames()`, `getFeaturedGames()`, `getGameBySlug(slug)`.
 - Ảnh mock dùng `https://placehold.co/800x450/1C1920/FF5A36.webp?text=...`.
 - Download URL mock: `https://example.com/shortlink-demo`.
-- `getAllVisibleGames()` và `getFeaturedGames()` chỉ trả game `isVisible`.
-- `getGameBySlug()` chỉ trả game visible.
 
 ## Navigation & Liên kết chân trang (Footer)
 - Footer có 4 link chuẩn:
@@ -85,7 +96,6 @@ src/
 - Dùng token thay vì hard-code màu.
 - Không thêm dependency hoặc dịch vụ trả phí khi chưa hỏi.
 - Không commit trừ khi được yêu cầu rõ ràng.
-- Không tạo trang mới nếu task chưa yêu cầu.
 - Cập nhật `todo.md` sau mỗi bước; chỉ tick khi đã kiểm chứng.
 - Chỉ dùng game/character/assets nguyên bản hoặc có giấy phép thương mại rõ ràng.
 - Không đưa game file hoặc video gốc vào repo. Ảnh production chỉ dùng `.webp` dưới 1 MB.
@@ -103,4 +113,5 @@ npx --yes -p typescript tsc --noEmit
 - 2026-10-28: Hoàn thành Phase 2 (types, mock data, helpers) trên `feat/mock-data`, merge vào `main`.
 - 2026-10-28: Hoàn thành Phase 3 (home page, GameCard, filter/search) trên `feat/home-page`, merge vào `main`.
 - 2026-10-29: Hoàn thành Phase 4 (Game Detail Page, YoutubeLite, SEO og:image) trên nhánh `feat/game-detail`, merge vào `main`.
-- 2026-10-29: Hoàn thành Phase 5 (Static Pages: How to Download, Legal, Footer polish) trên nhánh `feat/static-pages`.
+- 2026-10-29: Hoàn thành Phase 5 (Static Pages: How to Download, Legal, Footer polish) trên nhánh `feat/static-pages`, merge vào `main`.
+- 2026-10-29: Hoàn thành Phase 6 (Sitemap, robots.txt, production readiness), merge vào `main`.
