@@ -1,5 +1,41 @@
 [
 	{
+		"id": "dragon-ball-legends-mugen-v3",
+		"title": "Dragon Ball Legends Mugen V3",
+		"slug": "dragon-ball-legends-mugen-v3",
+		"platform": "PC",
+		"genres": ["MUGEN", "Đối kháng 2D", "Dragon Ball", "Anime", "PC"],
+		"shortDescription": "Đại hội võ thuật ngọc rồng MUGEN V3 đỉnh cao trên PC với hàng trăm biến thể nhân vật từ DBZ, DBGT đến DBS.",
+		"description": "Dragon Ball Legends Mugen V3 là một trong những bản mod MUGEN Dragon Ball đồ sộ nhất dành cho máy tính. Game quy tụ hàng trăm nhân vật và trạng thái biến hình từ Super Saiyan, Ultra Instinct, Gogeta, Vegito, Broly đến Moro và Granolah. Đồ họa hiệu ứng chưởng lực Kamehameha, Spirit Bomb mãn nhãn cùng âm thanh chiến đấu bùng nổ.",
+		"controls": [
+			{ "action": "Di chuyển", "key": "W / A / S / D hoặc Phím mũi tên" },
+			{ "action": "Đấm / Đá thường", "key": "A, S, D / J, K, L" },
+			{ "action": "Bắn Ki / Chưởng lực", "key": "U / I / O" },
+			{ "action": "Tụ Ki (Charge Ki)", "key": "Giữ phím Charge" },
+			{ "action": "Biến hình & Tuyệt kỹ", "key": "Tổ hợp phím Ultimate" }
+		],
+		"systemRequirements": {
+			"os": "Windows 7 / 8 / 10 / 11 (64-bit)",
+			"processor": "Intel Core i3 thế hệ 3 hoặc AMD tương đương",
+			"memory": "4 GB RAM trở lên",
+			"storage": "Khoảng 5 - 10 GB trống"
+		},
+		"version": "V3.0",
+		"fileSize": "PC Archive",
+		"updatedAt": "2026-11-05",
+		"coverImage": "/images/dragon-ball-legends-v3/cover.webp",
+		"screenshots": [
+			"/images/dragon-ball-legends-v3/screenshot-1.webp",
+			"/images/dragon-ball-legends-v3/screenshot-2.webp"
+		],
+		"youtubeId": "RSs5RpocHHo",
+		"downloadUrl": "https://shrinkme.click/dragonballmugenv3",
+		"isFeatured": true,
+		"isVisible": true,
+		"views": 4210,
+		"downloads": 1350
+	},
+	{
 		"id": "anime-mugen-dream-v1-3-android",
 		"title": "Anime Mugen Dream v1.3 Android Offline 2026",
 		"slug": "anime-mugen-dream-v1-3-android",
