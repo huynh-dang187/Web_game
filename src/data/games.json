@@ -1,5 +1,41 @@
 [
 	{
+		"id": "anime-mugen-dream-v1-3-android",
+		"title": "Anime Mugen Dream v1.3 Android Offline 2026",
+		"slug": "anime-mugen-dream-v1-3-android",
+		"platform": "Mobile",
+		"genres": ["MUGEN", "Đối kháng 2D", "Jump Force", "Anime Crossover", "Android Offline"],
+		"shortDescription": "Siêu phẩm Jump Force MUGEN trên Android với dàn nhân vật khổng lồ và hỗ trợ chơi offline mượt mà.",
+		"description": "Anime Mugen Dream v1.3 (Jump Force MUGEN Mobile) đưa vũ trụ anime đỉnh cao lên hệ máy Android. Với đầy đủ các chế độ Arcade, Versus, Cooperative, Survival và Training, người chơi có thể hóa thân vào hàng chục nhân vật đình đám từ Jujutsu Kaisen (Gojo, Sukuna), Dragon Ball, Naruto, One Piece, Bleach, Attack on Titan... Chiến đấu offline cực kỳ mượt mà với bộ phím cảm ứng ảo nhạy bén.",
+		"controls": [
+			{ "action": "Di chuyển", "key": "D-Pad ảo trái / phải / ngồi" },
+			{ "action": "Tấn công cơ bản", "key": "Nút A / B / C" },
+			{ "action": "Tuyệt chiêu Hào quang", "key": "Nút X / Y / Z" },
+			{ "action": "Thủ & Phản đòn", "key": "Nút Guard / Lùi" },
+			{ "action": "Kỹ năng Ultimate", "key": "Nút SP khi đầy thanh Nộ" }
+		],
+		"systemRequirements": {
+			"os": "Android 6.0 trở lên",
+			"processor": "Snapdragon 625 / MediaTek Helio G35 hoặc tương đương",
+			"memory": "2 GB RAM trở lên",
+			"storage": "Khoảng 1 - 2 GB trống"
+		},
+		"version": "v1.3 (2026)",
+		"fileSize": "Android APK",
+		"updatedAt": "2026-11-05",
+		"coverImage": "/images/anime-mugen-dream-v13/cover.webp",
+		"screenshots": [
+			"/images/anime-mugen-dream-v13/screenshot-1.webp",
+			"/images/anime-mugen-dream-v13/screenshot-2.webp"
+		],
+		"youtubeId": "AmvSJ3bh4XU",
+		"downloadUrl": "https://shrinkme.click/jumpforcev13",
+		"isFeatured": true,
+		"isVisible": true,
+		"views": 2980,
+		"downloads": 930
+	},
+	{
 		"id": "demon-slayer-mugen-v15-android",
 		"title": "Demon Slayer Mugen V15 Android Offline 2026",
 		"slug": "demon-slayer-mugen-v15-android",
