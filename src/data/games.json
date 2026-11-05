@@ -1,5 +1,42 @@
 [
 	{
+		"id": "demon-slayer-mugen-v15-android",
+		"title": "Demon Slayer Mugen V15 Android Offline 2026",
+		"slug": "demon-slayer-mugen-v15-android",
+		"platform": "Mobile",
+		"genres": ["MUGEN", "Đối kháng 2D", "Demon Slayer", "Kimetsu no Yaiba", "Android Offline"],
+		"shortDescription": "Trải nghiệm đại chiến Kimetsu no Yaiba phong cách Hinokami Chronicles 2 ngay trên điện thoại Android không cần mạng.",
+		"description": "Demon Slayer Mugen V15 Android Offline 2026 mang toàn bộ vũ trụ Kimetsu no Yaiba lên thiết bị Android. Game quy tụ dàn Thập Nhị Nguyệt Quỷ (Douma, Akaza, Kaigaku,...) cùng các Trụ cột Sát Quỷ Đội (Gyomei Himejima, Obanai Iguro, Giyu Tomioka,...). Lối chơi đối kháng 2D mượt mà, kỹ năng Hơi thở và Huyết Quỷ Thuật mãn nhãn, hỗ trợ chơi hoàn toàn offline.",
+		"controls": [
+			{ "action": "Di chuyển", "key": "Cần điều khiển ảo (D-Pad)" },
+			{ "action": "Tấn công thường", "key": "Nút đánh (A / B)" },
+			{ "action": "Hơi thở / Huyết Quỷ Thuật", "key": "Nút kỹ năng (Skill)" },
+			{ "action": "Nhảy & Né đòn", "key": "Nút Jump / Dash" },
+			{ "action": "Tuyệt kỹ Tối thượng (Ultimate)", "key": "Nút Ultimate khi đầy nộ" }
+		],
+		"systemRequirements": {
+			"os": "Android 7.0 trở lên",
+			"processor": "Snapdragon 660 / Helio P60 hoặc tương đương",
+			"memory": "3 GB RAM trở lên",
+			"storage": "Khoảng 1.5 - 3 GB trống"
+		},
+		"version": "V15 (2026)",
+		"fileSize": "Android APK",
+		"updatedAt": "2026-11-05",
+		"coverImage": "/images/demon-slayer-v15/cover.webp",
+		"screenshots": [
+			"/images/demon-slayer-v15/screenshot-1.webp",
+			"/images/demon-slayer-v15/screenshot-2.webp",
+			"/images/demon-slayer-v15/screenshot-3.webp"
+		],
+		"youtubeId": "Ku8LS1pEZcU",
+		"downloadUrl": "https://shrinkme.click/64Sbs",
+		"isFeatured": true,
+		"isVisible": true,
+		"views": 3890,
+		"downloads": 1240
+	},
+	{
 		"id": "anime-crossover-mugen-v2-6",
 		"title": "New Anime Crossover MUGEN V2.6 490+ CHARACTERS",
 		"slug": "anime-crossover-mugen-v2-6",
