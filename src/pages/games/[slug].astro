@@ -124,7 +124,22 @@ const relatedGames = [...samePlatformGames, ...differentPlatformGames].slice(0, 
 		{/* c) Media Section */}
 		<section aria-labelledby="media-heading" class="space-y-4">
 			<h2 id="media-heading" class="text-xl font-bold text-text">Video & Hình ảnh</h2>
-			<YoutubeLite youtubeId={game.youtubeId} title={game.title} />
+			{
+				game.youtubeId ? (
+					<YoutubeLite youtubeId={game.youtubeId} title={game.title} />
+				) : (
+					<div class="aspect-video w-full overflow-hidden rounded-card border border-border bg-card">
+						<img
+							src={game.coverImage}
+							alt={`Hình ảnh ${game.title}`}
+							width="800"
+							height="450"
+							loading="eager"
+							class="h-full w-full object-cover"
+						/>
+					</div>
+				)
+			}
 
 			{
 				game.screenshots && game.screenshots.length > 0 && (

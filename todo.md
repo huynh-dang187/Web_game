@@ -320,6 +320,16 @@ git merge fix/pre-launch
 - Thời gian build: ~`1.55s`
 - TypeScript: `0` lỗi
 
+## 14. Chuyển sang dữ liệu game thật
+- [x] Đã xóa toàn bộ 6 game mẫu hư cấu khỏi `src/data/games.json`
+- [x] Thêm "New Anime Crossover MUGEN V2.6 490+ CHARACTERS" vào `src/data/games.json` với link Google Drive
+- [x] Thêm "JoJo Version 7 MUGEN" vào `src/data/games.json` với link Google Drive
+- [x] Cập nhật `src/pages/games/[slug].astro` xử lý linh hoạt trường hợp chưa có `youtubeId` (hiển thị ảnh bìa game thay vì khung rỗng)
+- [x] Đặt game MUGEN lên đầu danh sách và gắn cờ `isFeatured: true`
+- [x] `npm run build` pass (sinh 5 trang tĩnh sạch, không còn route của game mẫu)
+- [x] `tsc --noEmit` pass (0 lỗi TypeScript)
+- [ ] Chờ người dùng cung cấp link video YouTube hoặc ảnh chụp màn hình/poster thực tế cho các game mới
+
 ## Placeholders to replace before public launch
 - [ ] `placehold.co` images
 - [ ] `youtubeId` `dQw4w9WgXcQ` (copyrighted music video)
